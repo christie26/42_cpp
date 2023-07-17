@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 NAME		= phonebook
 
 SRCS		= Contact.cpp main.cpp
+=======
+NAME		=	phonebook
+
+SRCS		= 	Contact.cpp
+				#PhoneBook.cpp
+>>>>>>> 97ddabb449f67ffe17291195315ec8d013ec51f9
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 

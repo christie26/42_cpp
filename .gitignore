@@ -1,4 +1,8 @@
 **/.DS_Store
 **/*.o
+<<<<<<< HEAD
 .vscode/settings.json
 cpp00/ex01/phonebook
+=======
+./vscode/**
+>>>>>>> 97ddabb449f67ffe17291195315ec8d013ec51f9
