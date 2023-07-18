@@ -5,15 +5,26 @@
 # include <string>
 
 class Contact {
-	private:
+
+private:
 	std::string first_name;
 	std::string last_name;
+	std::string nick_name;
+	std::string phone_number;
+	std::string secret;
 
-	public:
-// Setter
+public:
 	void setFirstname(std::string first_name);
-// Getter
+	void setLastname(std::string last_name);
+	void setNickname(std::string nick_name);
+	void setPhonenumber(std::string phone_number);
+	void setSecret(std::string secret);
+
 	std::string	getFirstname();
+	std::string	getLastname();
+	std::string	getNickname();
+	std::string	getPhonenumber();
+	std::string	getSecret();
 };
 
 #endif
