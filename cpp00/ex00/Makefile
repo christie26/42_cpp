@@ -10,7 +10,7 @@ RM			= rm -f
 
 all:		${NAME}
 
-.c.o:
+.cpp.o:
 			$(CPP) $(CFLAGS) -c $< -o $@
 
 $(NAME): 	$(OBJS)
