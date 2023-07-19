@@ -92,7 +92,7 @@ std::string PrintTen(std::string str) {
 		return (str);
 }
 
-int	PhoneBook::displayContents() {
+int	PhoneBook::DisplayContents() {
 
 	if (PhoneBook::index == 0) {
 		std::cout << "Phonebook is empty" << std::endl;
@@ -150,7 +150,7 @@ int GetIndex(int index_phonebook) {
 
 void PhoneBook::SearchContact() {
 	
-	if (displayContents())
+	if (DisplayContents())
 		return ;
 	
 	int index_n = GetIndex(PhoneBook::index);

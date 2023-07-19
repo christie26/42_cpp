@@ -26,7 +26,9 @@ int main() {
 			myPhonebook.SearchContact();
 		else if (input == "EXIT")
 			break ;
-		else
+		else if (!input.length())
+      		continue;
+    	else
 			std::cout << "WRONG COMMAND" << std::endl;
 	}
 	return 0;

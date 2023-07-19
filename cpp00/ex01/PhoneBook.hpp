@@ -15,7 +15,7 @@ public:
 	void	AddContact();
 	
 	void	SearchContact();
-	int		displayContents();
+	int		DisplayContents();
 
 };
 
