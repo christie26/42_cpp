@@ -1,6 +1,6 @@
-NAME		= megaphone
+NAME		= account
 
-SRCS		= megaphone.cpp
+SRCS		= Account.cpp tests.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
@@ -10,18 +10,14 @@ RM			= rm -f
 
 all:		${NAME}
 
-.c.o:
+.cpp.o:
 			$(CPP) $(CFLAGS) -c $< -o $@
 
 $(NAME): 	$(OBJS)
 			$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
-
 clean:
 			${RM} ${OBJS}
-
 fclean:		clean
 			${RM} ${NAME}
-
 re:			fclean all
-
 .PHONY:		all clean fclean re
