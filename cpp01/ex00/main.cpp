@@ -4,9 +4,9 @@
 Zombie* newZombie( std::string name );
 void	randomChump( std::string name );
 
-void leak() {
-	system("leaks zombie");
-}
+// void leak() {
+// 	system("leaks zombie");
+// }
 
 int main() {
 
@@ -27,5 +27,5 @@ int main() {
 	Zombie gun = Zombie();
 	gun.announce();
 
-	atexit (&leak);
+	// atexit (&leak);
 }
