@@ -2,4 +2,5 @@
 **/*.o
 .vscode/settings.json
 cpp00/ex01/phonebook
-# cpp00/ex02/19920104_091532.log
+cpp00/ex02/19920104_091532.log
+cpp01/ex03/weapon
