@@ -13,7 +13,7 @@ public:
 	const std::string&	getName();
 	std::string			getWeapon();
 
-	void				setWeapon(Weapon weapon);
+	void				setWeapon(Weapon &weapon);
 	void				attack();
 
 private:

@@ -12,19 +12,20 @@ int main()
 	std::cout << "weapon type: " << test.getType() << std::endl << std::endl;
 
 	{
-		Weapon club = Weapon("crude spiked club");
+		Weapon club = Weapon("Lightsaber");
 		HumanA alice("Alice", club);
 		alice.attack();
-		club.setType("some other type of club");
+		club.setType("Sniper");
 		alice.attack();
 	}
 	std::cout << std::endl;
 	{
-		Weapon club = Weapon("crude spiked club");
+		Weapon club = Weapon("Lightsaber");
 		HumanB bob("Bob");
 		bob.attack();
 		bob.setWeapon(club);
-		club.setType("some other type of club");
+		bob.attack();
+		club.setType("Sniper");
 		bob.attack();
 	}
 	return 0;

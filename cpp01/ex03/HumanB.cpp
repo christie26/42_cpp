@@ -25,11 +25,11 @@ const std::string &HumanB::getName() {
 std::string HumanB::getWeapon() {
 	if (!(_weapon))
 		return ("");
-	// std::cout << _weapon->getType() << std::endl;
 	return _weapon->getType();
 }
 
-void HumanB::setWeapon(Weapon weapon) {
+void HumanB::setWeapon(Weapon &weapon) {
 	
 	this->_weapon = &weapon;
 }
+// get reference -> change it to pointer 
