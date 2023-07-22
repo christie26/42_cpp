@@ -3,9 +3,9 @@
 
 Zombie* zombieHorde( int N, std::string name );
 
-void leak() {
-	system("leaks zombie");
-}
+// void leak() {
+// 	system("leaks zombie");
+// }
 
 int main() {
 
@@ -25,5 +25,5 @@ int main() {
 
 	delete[] horde;
 
-	atexit (&leak);
+	// atexit (&leak);
 }
