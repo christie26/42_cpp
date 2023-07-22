@@ -13,28 +13,10 @@ int main(int ac, char **av)
 	
 	Sed sed = Sed(av[1], av[2], av[3]);
 
+	std::ifstream ReadFile = sed.getReadFile();
+	std::ofstream WriteFile = sed.getWriteFile();
 	
-	std::string new_file = sed._filename + ".replace";
-
-	std::ifstream ReadFile(sed._filename);
-	if (!ReadFile.is_open()) {
-    	std::cerr << "Error opening file: " << sed._filename << std::endl;
-    	exit(EXIT_FAILURE);
-	}
-	std::ofstream WriteFile(new_file);
-	if (!WriteFile.is_open()) {
-    	std::cerr << "Error opening file: " << new_file << std::endl;
-    	exit(EXIT_FAILURE);
-	}
-	
-	std::string buffer;
-
-	while (std::getline(ReadFile, buffer)) {
-		size_t found = buffer.find(sed._s1);
-		if (found!=std::string::npos) {
-			
-		}
-	}
+	sed.copyRoutine(ReadFile, WriteFile);
 
 	return 0;
 }
