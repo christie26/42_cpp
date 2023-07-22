@@ -1,6 +1,6 @@
 NAME		=	sed
 
-SRCS		= 	main.cpp StringSed.cpp
+SRCS		= 	main.cpp Sed.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
