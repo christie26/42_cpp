@@ -4,20 +4,21 @@ SRCS		= Account.cpp tests.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CPP 		= c++ -std=c++98
-CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -f
+CFLAGS		= -std=c++98 -Wall -Wextra -Werror
 
 all:		${NAME}
 
 .cpp.o:
-			$(CPP) $(CFLAGS) -c $< -o $@
+			$(CXX) $(CFLAGS) -c $< -o $@
 
 $(NAME): 	$(OBJS)
-			$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+
 clean:
 			${RM} ${OBJS}
 fclean:		clean
 			${RM} ${NAME}
-re:			fclean all
+re:			
+			make fclean
+			make all
 .PHONY:		all clean fclean re

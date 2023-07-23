@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 	else
 		for (int i = 1; i < argc; i++)
 			for (int j = 0; argv[i][j]; j++)
-				std::cout << (char)toupper(argv[i][j]);
+				std::cout << static_cast<float>(std::toupper(argv[i][j]));
 	std::cout << std::endl;
 	return (0);
 }
