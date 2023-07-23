@@ -98,14 +98,14 @@ int	PhoneBook::DisplayContents() {
 		std::cout << "Phonebook is empty" << std::endl;
 		return (1);
 	}
-	std::cout << std::left << std::setw(10) << "index" << '|'
+	std::cout << std::right << std::setw(10) << "index" << '|'
 							<< std::setw(10) << "first name" << '|'
 							<< std::setw(10) << "last name" << '|'
 							<< std::setw(10) << "nick name" << std::endl;
 	for (int index = 0; index < PhoneBook::index; index++)
 	{
 		Contact contact = PhoneBook::contacts[index];
-		std::cout << std::left << std::setw(10) << index << '|'
+		std::cout << std::right << std::setw(10) << index << '|'
 							<< std::setw(10) << PrintTen(contact.getFirstname()) << '|'
 							<< std::setw(10) << PrintTen(contact.getLastname())	 << '|'
 							<< std::setw(10) << PrintTen(contact.getNickname())	<< std::endl;
