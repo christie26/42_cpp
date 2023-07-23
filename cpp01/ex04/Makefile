@@ -5,7 +5,7 @@ SRCS		= 	main.cpp Sed.cpp
 OBJS		:= $(SRCS:%.cpp=%.o)
 
 CPP 		= c++ -std=c++98
-FLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
 all:		${NAME}
