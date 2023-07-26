@@ -13,13 +13,13 @@ int main() {
 		std::string input;
 		
 		std::cout << "Enter your command: ";
+		
 		std::getline(std::cin, input);
 		if (std::cin.eof()) {
-      		std::clearerr(stdin);
-			std::cout << std::endl;
-      		std::cin.clear();
-			continue ;
+			std::cout << std::endl << "EOF, program is closing." << std::endl;
+			break ;
 		}
+		
 		if (input == "ADD")
 			myPhonebook.AddContact();
 		else if (input == "SEARCH")

@@ -15,9 +15,8 @@ void PhoneBook::AddContact() {
 		std::cout << "Your first name: ";
 		std::getline(std::cin, input);
 		if (std::cin.eof()) {
-      		std::clearerr(stdin);
-			std::cout << std::endl;
-      		std::cin.clear();
+			std::cout << std::endl << "EOF, program is closing." << std::endl;
+			exit (EXIT_FAILURE);
 		}
 		if (!input.empty()) {
 			newContact.setFirstname(input);
@@ -29,9 +28,8 @@ void PhoneBook::AddContact() {
 		std::cout << "Your last name: ";
 		std::getline(std::cin, input);
 		if (std::cin.eof()) {
-      		std::clearerr(stdin);
-			std::cout << std::endl;
-      		std::cin.clear();
+			std::cout << std::endl << "EOF, program is closing." << std::endl;
+			exit (EXIT_FAILURE);
 		}
 		if (!input.empty()) {
 			newContact.setLastname(input);
@@ -43,9 +41,8 @@ void PhoneBook::AddContact() {
 		std::cout << "Your nick name: ";
 		std::getline(std::cin, input);
 		if (std::cin.eof()) {
-      		std::clearerr(stdin);
-			std::cout << std::endl;
-      		std::cin.clear();
+			std::cout << std::endl << "EOF, program is closing." << std::endl;
+			exit (EXIT_FAILURE);
 		}
 		if (!input.empty()) {
 			newContact.setNickname(input);
@@ -57,9 +54,8 @@ void PhoneBook::AddContact() {
 		std::cout << "Your phone number: ";
 		std::getline(std::cin, input);
 		if (std::cin.eof()) {
-      		std::clearerr(stdin);
-			std::cout << std::endl;
-      		std::cin.clear();
+			std::cout << std::endl << "EOF, program is closing." << std::endl;
+			exit (EXIT_FAILURE);
 		}
 		if (!input.empty()) {
 			newContact.setPhonenumber(input);
@@ -71,9 +67,8 @@ void PhoneBook::AddContact() {
 		std::cout << "Your darkest secret: ";
 		std::getline(std::cin, input);
 		if (std::cin.eof()) {
-      		std::clearerr(stdin);
-			std::cout << std::endl;
-      		std::cin.clear();
+			std::cout << std::endl << "EOF, program is closing." << std::endl;
+			exit (EXIT_FAILURE);
 		}
 		if (!input.empty()) {
 			newContact.setSecret(input);
@@ -124,9 +119,8 @@ int GetIndex(int index_phonebook) {
 		std::cout << "Put index : ";
 		std::getline(std::cin, index);
 		if (std::cin.eof()) {
-			std::clearerr(stdin);
-			std::cout << std::endl;
-			std::cin.clear();
+			std::cout << std::endl << "EOF, program is closing." << std::endl;
+			exit (EXIT_FAILURE);
 		}
 		if (index.length() > 1) {
 			std::cout << "Index error: too long" << std::endl;
