@@ -18,9 +18,7 @@ public:
 	Fixed (Fixed &fixed); // copy constructor 
 	Fixed& operator= (const Fixed& fixed); // copy assignment operator overload
 
-	// const member function
 	int getRawBits( void ) const;
-	// get const variable as parameter 
 	void setRawBits( int const raw );
 
 };
