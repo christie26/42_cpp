@@ -1,6 +1,6 @@
 NAME		=	a.out
 
-SRCS		= 	main.cpp
+SRCS		= 	main.cpp ClapTrap.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
