@@ -29,6 +29,6 @@ int Fixed::getRawBits( void ) const {
 }
 
 void Fixed::setRawBits( int const raw ) {
-	this->value = raw << this->fractionalBits;
+	this->value = raw;
 	return ;
 }

@@ -33,9 +33,71 @@ Fixed& Fixed::operator= (const Fixed& fixed) {
 	return *this;
 }
 
-std::ostream& operator<< (std::ostream& os, const Fixed& fixed) {
-	os << fixed.toFloat();
-	return (os);
+bool Fixed::operator>	(const Fixed& fixed) { return ( this->rawValue > fixed.rawValue ); }
+bool Fixed::operator<	(const Fixed& fixed) { return ( this->rawValue < fixed.rawValue ); }
+bool Fixed::operator>=	(const Fixed& fixed) { return ( this->rawValue >= fixed.rawValue ); }
+bool Fixed::operator<=	(const Fixed& fixed) { return ( this->rawValue <= fixed.rawValue ); }
+bool Fixed::operator==	(const Fixed& fixed) { return ( this->rawValue == fixed.rawValue ); }
+bool Fixed::operator!=	(const Fixed& fixed) { return ( this->rawValue != fixed.rawValue ); }
+
+Fixed Fixed::operator+ (const Fixed& fixed) {
+	Fixed newFixed;
+	newFixed.setRawBits(this->rawValue + fixed.rawValue);
+	return ( newFixed ); 
+}
+
+Fixed Fixed::operator- (const Fixed& fixed) {
+	Fixed newFixed;
+	newFixed.setRawBits(this->rawValue - fixed.rawValue);
+	return ( newFixed ); 
+}
+
+Fixed Fixed::operator* (const Fixed& fixed) {
+	Fixed newFixed;
+	newFixed.setRawBits(this->rawValue * fixed.rawValue / (1 << 8));
+	return ( newFixed ); 
+}
+
+Fixed Fixed::operator/ (const Fixed& fixed) {
+	Fixed newFixed;
+	newFixed.setRawBits(this->rawValue * (1 << 8) / fixed.rawValue);
+	return ( newFixed ); 
+}
+
+Fixed& Fixed::operator++ ( void ) {
+	this->rawValue++;
+	return *this;
+} // prefix
+
+Fixed& Fixed::operator-- ( void ) {
+	this->rawValue--;
+	return *this;
+} // prefix
+
+Fixed Fixed::operator++( int ) {
+	Fixed temp = *this;
+	this->rawValue++;
+	return temp;
+} // postfix
+
+Fixed Fixed::operator--( int ) {
+	Fixed temp = *this;
+	this->rawValue--;
+	return temp;
+} // postfix
+
+const Fixed& Fixed::max(const Fixed& fixed1, const Fixed& fixed2) {
+	if (fixed1.getRawBits() > fixed2.getRawBits())	
+		return (fixed1);
+	else											
+		return (fixed2);
+}
+
+const Fixed& Fixed::min(const Fixed& fixed1, const Fixed& fixed2) {
+	if (fixed1.getRawBits() < fixed2.getRawBits())	
+		return (fixed1);
+	else											
+		return (fixed2);
 }
 
 int Fixed::getRawBits( void ) const {
@@ -43,8 +105,7 @@ int Fixed::getRawBits( void ) const {
 }
 
 void Fixed::setRawBits( int const raw ) {
-	this->rawValue = raw << this->fractionalBits;
-	return ;
+	this->rawValue = raw;
 }
 
 float Fixed::toFloat() const {
@@ -53,4 +114,9 @@ float Fixed::toFloat() const {
 
 int Fixed::toInt() const {
     return (static_cast<int>(this->rawValue) / (1 << this->fractionalBits));
+}
+
+std::ostream& operator<< (std::ostream& os, const Fixed& fixed) {
+	os << fixed.toFloat();
+	return (os);
 }
