@@ -35,8 +35,8 @@ int main( void ) {
 	
 	Fixed f1( 5.05f );
 	Fixed f2( 2 );
-	Fixed const f( f1 / f2 );
-	// Fixed const f( f1 * f2 );
+	// Fixed const f( f1 / f2 );
+	Fixed const f( f1 * f2 );
 	std::cout << "f1: " << f1 << std::endl;
 	std::cout << "f2: " << f2 << std::endl;
 	std::cout << "f:  "	<< f  << std::endl;

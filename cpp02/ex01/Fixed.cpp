@@ -12,7 +12,7 @@ Fixed::Fixed ( const int intValue )
 }
 
 Fixed::Fixed ( const float floatValue )
-: rawValue( floatValue * ( 1 << 8 ) )  {
+: rawValue( roundf(floatValue * ( 1 << 8 )) )  {
 	std::cout << "Float constructor called" << std::endl;
 }
 

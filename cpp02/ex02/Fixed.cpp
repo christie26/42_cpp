@@ -12,7 +12,7 @@ Fixed::Fixed ( const int intValue )
 }
 
 Fixed::Fixed ( const float floatValue )
-: rawValue( floatValue * ( 1 << 8 ) )  {
+: rawValue( roundf(floatValue * ( 1 << 8 )) )  {
 	std::cout << "Float constructor called" << std::endl;
 }
 
@@ -28,7 +28,7 @@ Fixed::~Fixed ( ) {
 Fixed& Fixed::operator= (const Fixed& fixed) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &fixed) {
-		this->rawValue = fixed.rawValue; 
+		this->rawValue = fixed.rawValue;
 	}
 	return *this;
 }
@@ -43,7 +43,7 @@ bool Fixed::operator!=	(const Fixed& fixed) { return ( this->rawValue != fixed.r
 Fixed Fixed::operator+ (const Fixed& fixed) {
 	Fixed newFixed;
 	newFixed.setRawBits(this->rawValue + fixed.rawValue);
-	return ( newFixed ); 
+	return ( newFixed );
 }
 
 Fixed Fixed::operator- (const Fixed& fixed) {
