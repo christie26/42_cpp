@@ -4,7 +4,7 @@ SRCS		= Contact.cpp PhoneBook.cpp main.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CFLAGS		= -pedantic -std=c++98 -Wall -Wextra -Werror
+CFLAGS		= -std=c++98 -Wall -Wextra -Werror
 
 all:		${NAME}
 
