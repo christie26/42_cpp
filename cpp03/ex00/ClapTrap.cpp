@@ -10,14 +10,18 @@ ClapTrap::~ClapTrap () {
 }
 
 ClapTrap::ClapTrap (ClapTrap &clapTrap) 
-: _name(clapTrap._name) {
+: _name(clapTrap._name), _hitPoints(clapTrap._hitPoints), 
+_energyPoints(clapTrap._energyPoints), _attackDamage(clapTrap._attackDamage) {
 	std::cout << "Copy constructor called" << std::endl; 
 	}
 
 ClapTrap& ClapTrap::operator= (const ClapTrap& clapTrap) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &clapTrap) {
-		this->_name = clapTrap._name; 
+		this->_name = clapTrap._name;
+		this->_hitPoints = clapTrap._hitPoints; 
+		this->_energyPoints = clapTrap._energyPoints; 
+		this->_attackDamage = clapTrap._attackDamage; 
 	}
 	return *this;
 }
@@ -37,7 +41,7 @@ void ClapTrap::printStatus() {
 	std::cout	<< Green << _name << Reset
 				<< " now has " << Green << _hitPoints << Reset
 				<< " points!" 
-				<< std::endl << std::endl;
+				<< std::endl;
 }
 
 void ClapTrap::setAttackDamage(int amount) {
