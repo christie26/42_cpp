@@ -2,15 +2,16 @@
 
 ClapTrap::ClapTrap ( std::string name )
 : _name(name) ,_hitPoints( 10 ), _energyPoints( 10 ), _attackDamage ( 0 ) {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << Blue << "Clap, Default constructor called" << Reset << std::endl;
 }
 
 ClapTrap::~ClapTrap () {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << Red << "Clap, Destructor called" << Reset << std::endl;
 }
 
 ClapTrap::ClapTrap (ClapTrap &clapTrap) 
-: _name(clapTrap._name) {
+: _name(clapTrap._name), _hitPoints(clapTrap._hitPoints), 
+_energyPoints(clapTrap._energyPoints), _attackDamage(clapTrap._attackDamage) {
 	std::cout << "Copy constructor called" << std::endl; 
 	}
 

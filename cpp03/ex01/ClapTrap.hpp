@@ -16,7 +16,7 @@
 
 class ClapTrap {
 
-private:
+protected:
 	std::string _name;
 	int			_hitPoints;
 	int			_energyPoints;
@@ -29,7 +29,8 @@ public:
 	ClapTrap (ClapTrap &clapTrap); // copy constructor 
 	ClapTrap& operator= (const ClapTrap& clapTrap); // copy assignment operator overload
 
-	void attack(const std::string& target);
+	// void attack(const std::string& target);
+	virtual void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
