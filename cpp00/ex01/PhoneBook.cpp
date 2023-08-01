@@ -6,6 +6,33 @@
 
 PhoneBook::PhoneBook() : index(0) {}
 
+std::string PhoneBook::getInput() {
+
+	std::string input;
+	std::string result;
+
+	std::getline(std::cin, input);
+	if (std::cin.eof()) {
+		std::cout << std::endl << "EOF, program is closing." << std::endl;
+		exit (EXIT_FAILURE);
+	}
+	if (input.empty())
+		return "";
+	size_t i = 0;
+	while (i < input.length() && isspace(input[i]))
+		i++;
+	while (i < input.length()) {
+		if (isspace(input[i]))
+			result += ' ';
+		else if (isalnum(input[i]))
+			result += input[i];
+		else
+			return "";
+		i++;
+	}
+	return result;
+}
+
 void PhoneBook::AddContact() {
 
 	Contact 	newContact;
@@ -13,69 +40,44 @@ void PhoneBook::AddContact() {
 
 	while (true) {
 		std::cout << "Your first name: ";
-		std::getline(std::cin, input);
-		if (std::cin.eof()) {
-			std::cout << std::endl << "EOF, program is closing." << std::endl;
-			exit (EXIT_FAILURE);
-		}
+		std::string input = getInput();
 		if (!input.empty()) {
 			newContact.setFirstname(input);
 			break ;
 		}
 	}
-	
 	while (true) {
 		std::cout << "Your last name: ";
-		std::getline(std::cin, input);
-		if (std::cin.eof()) {
-			std::cout << std::endl << "EOF, program is closing." << std::endl;
-			exit (EXIT_FAILURE);
-		}
+		std::string input = getInput();
 		if (!input.empty()) {
 			newContact.setLastname(input);
 			break ;
 		}
 	}
-
 	while (true) {
 		std::cout << "Your nick name: ";
-		std::getline(std::cin, input);
-		if (std::cin.eof()) {
-			std::cout << std::endl << "EOF, program is closing." << std::endl;
-			exit (EXIT_FAILURE);
-		}
+		std::string input = getInput();
 		if (!input.empty()) {
 			newContact.setNickname(input);
 			break ;
 		}
 	}
-
 	while (true) {
 		std::cout << "Your phone number: ";
-		std::getline(std::cin, input);
-		if (std::cin.eof()) {
-			std::cout << std::endl << "EOF, program is closing." << std::endl;
-			exit (EXIT_FAILURE);
-		}
+		std::string input = getInput();
 		if (!input.empty()) {
 			newContact.setPhonenumber(input);
 			break ;
 		}
 	}
-	
 	while (true) {
 		std::cout << "Your darkest secret: ";
-		std::getline(std::cin, input);
-		if (std::cin.eof()) {
-			std::cout << std::endl << "EOF, program is closing." << std::endl;
-			exit (EXIT_FAILURE);
-		}
+		std::string input = getInput();
 		if (!input.empty()) {
 			newContact.setSecret(input);
 			break ;
 		}
 	}
-
 	contacts[index % 8] = newContact;
 	index++;
 }

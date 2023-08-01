@@ -13,12 +13,8 @@ int main() {
 		std::string input;
 		
 		std::cout << "Enter your command: ";
-		
-		std::getline(std::cin, input);
-		if (std::cin.eof()) {
-			std::cout << std::endl << "EOF, program is closing." << std::endl;
-			break ;
-		}
+
+		input = myPhonebook.getInput();
 		
 		if (input == "ADD")
 			myPhonebook.AddContact();

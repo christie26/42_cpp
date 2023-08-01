@@ -7,8 +7,8 @@
 class PhoneBook {
 
 private:
-	Contact	contacts[8];
-	int		index;
+	Contact		contacts[8];
+	int			index;
 
 public:
 	PhoneBook();
@@ -16,6 +16,7 @@ public:
 	
 	void	SearchContact();
 	int		DisplayContents();
+	std::string getInput();
 
 };
 
