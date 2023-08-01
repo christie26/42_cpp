@@ -83,7 +83,7 @@ void PhoneBook::AddContact() {
 }
 
 std::string PrintTen(std::string str) {
-	if (str.length() > 9)
+	if (str.length() > 10)
 		return (str.substr(0, 9) + '.');
 	else
 		return (str);

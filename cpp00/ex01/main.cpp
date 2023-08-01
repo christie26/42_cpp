@@ -25,7 +25,7 @@ int main() {
 		else if (!input.length())
       		continue;
     	else
-			std::cout << "WRONG COMMAND" << std::endl;
+			std::cout << "wrong command !" << std::endl;
 	}
 	return 0;
 }
