@@ -2,6 +2,7 @@ NAME		=	a.out
 
 SRCS		= 	main.cpp \
 				Animal.cpp Dog.cpp Cat.cpp \
+				WrongAnimal.cpp WrongDog.cpp WrongCat.cpp \
 				PrintColor.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
