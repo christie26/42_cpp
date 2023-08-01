@@ -3,12 +3,29 @@
 #define ANIMAL_HPP
 
 #include <string>
+#include <iostream>
+#include "Brain.hpp"
 
 class Animal {
 
 protected:
-	std::string type;
+	std::string _type;
+	Brain* _brain;
 
+public:
+
+	Animal( void );
+	virtual ~Animal( void );
+	Animal (Animal &animal);
+	Animal& operator= (const Animal& animal);
+
+	const std::string getType () const;
+	
+	void setType(std::string type);
+
+	virtual void makeSound( void ) const;
+	virtual Brain* getBrain( void );
+	virtual void setBrain( Brain* brain );
 };
 
 #endif
