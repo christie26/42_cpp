@@ -17,12 +17,14 @@ Cat::~Cat () {
 Cat::Cat (Cat &cat) {
 	printCopyConstructor("Cat");
 	this->_type = cat._type;
+	_catBrain = new Brain(*cat._catBrain);
 }
 
 Cat& Cat::operator= (const Cat& cat) {
 	printCopyAssignmentOperator("Cat");
 	if (this != &cat) {
 		this->_type = cat._type;
+		_catBrain = new Brain(*cat._catBrain);
 	}
 	return *this;
 }

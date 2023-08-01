@@ -5,8 +5,7 @@
 Dog::Dog () {
 	printConstructor("Dog");
 	setType("Dog");
-	Brain* dogBrain = new Brain;
-	_dogBrain = dogBrain;
+	_dogBrain = new Brain;
 }
 
 Dog::~Dog () {
@@ -17,12 +16,14 @@ Dog::~Dog () {
 Dog::Dog (Dog &dog) {
 	printCopyConstructor("Dog");
 	this->_type = dog._type;
+	_dogBrain = new Brain(*dog._dogBrain);
 }
 
 Dog& Dog::operator= (const Dog& dog) {
 	printCopyAssignmentOperator("Dog");
 	if (this != &dog) {
 		this->_type = dog._type;
+		_dogBrain = new Brain(*dog._dogBrain);
 	}
 	return *this;
 }

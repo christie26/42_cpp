@@ -9,7 +9,6 @@
 int main( void ) {
 
 	Animal *animalHorde[6];
-	// animalHorde = new Animal [6];
 
 	std::cout << std::endl;
 
@@ -17,7 +16,16 @@ int main( void ) {
 	smartBrain.setIdea(42, "I am smart");
 	Brain stupidBrain;
 	stupidBrain.setIdea(42, "I am stupid");
+	
+	std::cout << std::endl;
 
+	Dog dog1;
+	std::cout << std::endl;
+	animalHorde[0] = new Dog(dog1);
+	dog1.setBrain(&smartBrain);
+	std::cout << "dog1's brain: " << dog1.getBrain()->getIdea(42) << std::endl;
+	std::cout << "dog1's brain from Horde: " << animalHorde[0]->getBrain()->getIdea(42) << std::endl;
+/*
 	// Dog* dog1 = new Dog();
 	Dog* dog2 = new Dog();
 	Dog* dog3 = new Dog();
@@ -27,11 +35,6 @@ int main( void ) {
 	std::cout << std::endl;
 
 	// Deep copy dog1 into a new memory location
-	Dog dog1;
-	animalHorde[0] = new Dog(dog1);
-	dog1.setBrain(&smartBrain);
-	std::cout << "dog1's brain: " << dog1.getBrain()->getIdea(42) << std::endl;
-	std::cout << "dog1's brain from Horde: " << animalHorde[0]->getBrain()->getIdea(42) << std::endl;
 	
 	dog1.setBrain(&stupidBrain);
 	std::cout << "dog1's brain: " << dog1.getBrain()->getIdea(42) << std::endl;
@@ -50,6 +53,7 @@ int main( void ) {
 
 // You must delete directly dogs and cats as Animals.
 	// delete[] animalHorde;
+*/
 
 	return 0;
 

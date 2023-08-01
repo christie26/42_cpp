@@ -4,21 +4,24 @@
 
 Animal::Animal () {
 	printConstructor("Animal");
+	_brain = new Brain;
 }
 
 Animal::~Animal () {
 	printDestructor("Animal");
 }
 
-Animal::Animal (Animal &Animal) 
-: _type(Animal._type) {
+Animal::Animal (Animal &animal) 
+: _type(animal._type) {
 	printCopyConstructor("Animal");
-	}
+	_brain = new Brain(*animal._brain);
+}
 
-Animal& Animal::operator= (const Animal& Animal) {
+Animal& Animal::operator= (const Animal& animal) {
 	printCopyAssignmentOperator("Animal");
-	if (this != &Animal) {
-		this->_type = Animal._type;
+	if (this != &animal) {
+		this->_type = animal._type;
+		_brain = new Brain(*animal._brain);
 	}
 	return *this;
 }
