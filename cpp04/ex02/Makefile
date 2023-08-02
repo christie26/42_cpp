@@ -1,10 +1,13 @@
 NAME		=	a.out
 
-SRCS		= 	main.cpp Animal.cpp
+SRCS		= 	main.cpp \
+				Animal.cpp Dog.cpp Cat.cpp \
+				WrongAnimal.cpp WrongDog.cpp WrongCat.cpp \
+				PrintColor.cpp Brain.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CFLAGS		= -std=c++98 -Wall -Wextra -Werror
+CFLAGS		= -std=c++98 -Wall -Wextra -Werror -g
 
 all:		${NAME}
 
