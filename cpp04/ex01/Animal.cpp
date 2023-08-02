@@ -4,25 +4,22 @@
 
 Animal::Animal () {
 	printConstructor("Animal");
-	_brain = new Brain;
 }
 
 Animal::~Animal () {
 	printDestructor("Animal");
 }
 
-Animal::Animal (Animal &animal) 
+Animal::Animal (const Animal &animal) 
 : _type(animal._type) {
 	printCopyConstructor("Animal");
-	_brain = new Brain(*animal._brain);
 }
 
 Animal& Animal::operator= (const Animal& animal) {
 	printCopyAssignmentOperator("Animal");
-	if (this != &animal) {
+	if (this != &animal)
 		this->_type = animal._type;
-		_brain = new Brain(*animal._brain);
-	}
+
 	return *this;
 }
 
@@ -40,9 +37,4 @@ void Animal::makeSound( void ) const {
 
 Brain* Animal::getBrain( void ) {
 	return 0;
-	// return (_brain);
-}
-
-void Animal::setBrain( Brain* brain) {
-	_brain = brain;
 }

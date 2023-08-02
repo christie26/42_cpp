@@ -14,7 +14,7 @@ public:
 
 	Dog( void );
 	~Dog( void );
-	Dog (Dog &dog);
+	Dog (const Dog &dog);
 	Dog& operator= (const Dog& dog);
 
 	void makeSound( void ) const;

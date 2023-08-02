@@ -10,13 +10,13 @@ class Animal {
 
 protected:
 	std::string _type;
-	Brain* _brain;
+	// Brain* _brain;
 
 public:
 
 	Animal( void );
 	virtual ~Animal( void );
-	Animal (Animal &animal);
+	Animal (const Animal &animal);
 	Animal& operator= (const Animal& animal);
 
 	const std::string getType () const;
@@ -25,7 +25,6 @@ public:
 
 	virtual void makeSound( void ) const;
 	virtual Brain* getBrain( void );
-	virtual void setBrain( Brain* brain );
 };
 
 #endif

@@ -6,11 +6,10 @@
 #include "WrongDog.hpp"
 #include "WrongCat.hpp"
 
+void leak(void) {
+	system("leaks a.out");
+}
 int main( void ) {
-
-	Animal *animalHorde[6];
-
-	std::cout << std::endl;
 
 	Brain smartBrain;
 	smartBrain.setIdea(42, "I am smart");
@@ -19,42 +18,52 @@ int main( void ) {
 	
 	std::cout << std::endl;
 
-	Dog dog1;
-	std::cout << std::endl;
-	animalHorde[0] = new Dog(dog1);
-	dog1.setBrain(&smartBrain);
-	std::cout << "dog1's brain: " << dog1.getBrain()->getIdea(42) << std::endl;
-	std::cout << "dog1's brain from Horde: " << animalHorde[0]->getBrain()->getIdea(42) << std::endl;
-/*
-	// Dog* dog1 = new Dog();
+	Dog* dog1 = new Dog();
 	Dog* dog2 = new Dog();
 	Dog* dog3 = new Dog();
-	animalHorde[1] = dog2;
-	animalHorde[2] = dog3;
-
-	std::cout << std::endl;
-
-	// Deep copy dog1 into a new memory location
-	
-	dog1.setBrain(&stupidBrain);
-	std::cout << "dog1's brain: " << dog1.getBrain()->getIdea(42) << std::endl;
-	std::cout << "dog1's brain from Horde: " << animalHorde[0]->getBrain()->getIdea(42) << std::endl;
-
-	std::cout << std::endl;
-
 	Cat* cat1 = new Cat();
 	Cat* cat2 = new Cat();
 	Cat* cat3 = new Cat();
-	animalHorde[3] = cat1;
-	animalHorde[4] = cat2;
-	animalHorde[5] = cat3;
+	
+	dog1->setBrain(&smartBrain);
+	
+	Animal *animalHorde[6];
+	
+	animalHorde[0] = new Dog(*dog1);
+	animalHorde[1] = new Dog(*dog2);
+	animalHorde[2] = new Dog(*dog3);
+	animalHorde[3] = new Cat(*cat1);
+	animalHorde[4] = new Cat(*cat2);
+	animalHorde[5] = new Cat(*cat3);
+
+/*
+// We can check deep copy with this code ! 
+	dog1->setType("hihi");
+	std::cout << "dog1 type(origin): " << dog1->getType() << std::endl;
+	std::cout << "dog1 type(group) : " << animalHorde[0]->getType() << std::endl;
 
 	std::cout << std::endl;
 
-// You must delete directly dogs and cats as Animals.
-	// delete[] animalHorde;
+	std::cout << "dog1's brain (origin): " << dog1->getBrain()->getIdea(42) << std::endl;
+	std::cout << "dog1's brain (group) : " << animalHorde[0]->getBrain()->getIdea(42) << std::endl;
+	dog1->setBrain(&stupidBrain);
+	std::cout << "dog1's brain (origin): " << dog1->getBrain()->getIdea(42) << std::endl;
+	std::cout << "dog1's brain (group) : " << animalHorde[0]->getBrain()->getIdea(42) << std::endl;
 */
 
+	std::cout << std::endl;
+
+	delete dog1;
+	delete dog2;
+	delete dog3;
+	delete cat1;
+	delete cat2;
+	delete cat3;
+
+	for (int i = 0; i < 6; i++)
+		delete animalHorde[i];
+
+	atexit(&leak);
 	return 0;
 
 }

@@ -14,7 +14,7 @@ Cat::~Cat () {
 	delete(_catBrain);
 }
 
-Cat::Cat (Cat &cat) {
+Cat::Cat (const Cat &cat) {
 	printCopyConstructor("Cat");
 	this->_type = cat._type;
 	_catBrain = new Brain(*cat._catBrain);
@@ -38,5 +38,5 @@ Brain* Cat::getBrain( void ) {
 }
 
 void Cat::setBrain( Brain* brain) {
-	_catBrain = brain;
+	*_catBrain = *brain;
 }

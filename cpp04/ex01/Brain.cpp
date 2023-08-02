@@ -1,34 +1,41 @@
 
 #include "Brain.hpp"
 #include "PrintColor.hpp"
+#include "Brain.hpp"
 
-Brain::Brain () {
+Brain::Brain() {
 	printConstructor("Brain");
+    for (int i = 0; i < 100; ++i) {
+        _ideas[i] = "";
+    }
 }
 
-Brain::~Brain () {
+Brain::~Brain() {
 	printDestructor("Brain");
 }
 
-Brain::Brain (Brain &brain) {
+Brain::Brain(const Brain &brain) {
 	printCopyConstructor("Brain");
 	std::memcpy(this->_ideas, brain._ideas, sizeof(this->_ideas));
-// We can't use a line below with array
-	// this->_ideas = brain._ideas;
 }
 
-Brain& Brain::operator= (const Brain& brain) {
+Brain& Brain::operator=(const Brain& brain) {
 	printCopyAssignmentOperator("Brain");
-	if (this != &brain)
-		std::memcpy(this->_ideas, brain._ideas, sizeof(this->_ideas));
-	return *this;
+    if (this != &brain)
+    	std::memcpy(this->_ideas, brain._ideas, sizeof(this->_ideas));
+
+    return *this;
 }
 
 std::string Brain::getIdea(int index) {
-	// if (_ideas[index])
-		return (_ideas[index]);
+    if (index >= 0 && index < 100) {
+        return _ideas[index];
+    }
+    return "";
 }
 
 void Brain::setIdea(int index, std::string idea) {
-	_ideas[index] = idea;
+    if (index >= 0 && index < 100) {
+        _ideas[index] = idea;
+    }
 }
