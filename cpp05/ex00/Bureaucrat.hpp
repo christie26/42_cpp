@@ -23,7 +23,7 @@ public:
 	void increaseGrade();
 	void decreaseGrade();
 
-
+	void handleInvalidGrade( int grade );
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
