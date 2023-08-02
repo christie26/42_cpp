@@ -1,15 +1,22 @@
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main( void ) {
 
-	Bureaucrat Alice("Alice", 10);
+	Bureaucrat Alice("Alice", 3);
 	Bureaucrat Bob("Bob", -1);
-	Bureaucrat Chris("Chris", 170);
 	
 	std::cout << Alice << std::endl;
 	std::cout << Bob << std::endl;
-	std::cout << Chris << std::endl;
 	
+	Alice.increaseGrade();
+	Alice.increaseGrade();
+	Alice.increaseGrade();
 
+	Form webserv("webserv", 5, 10);
+
+	Alice.signForm(webserv);
+	
+	return 0;
 }
