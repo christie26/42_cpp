@@ -2,7 +2,10 @@
 #include "Weapon.hpp"
 #include "HumanA.hpp"
 #include "HumanB.hpp"
-#include <iostream>
+
+void leak() {
+	system("leaks weapon");
+}
 
 int main()
 {
@@ -28,5 +31,8 @@ int main()
 		club.setType("Sniper");
 		bob.attack();
 	}
+
+	// atexit(&leak);
+
 	return 0;
 }

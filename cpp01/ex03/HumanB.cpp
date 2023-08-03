@@ -1,11 +1,9 @@
 
 #include "HumanB.hpp"
-#include <iostream>
 
-
-HumanB::HumanB(std::string name) : _name(name) {
+HumanB::HumanB(std::string name) 
+: _name(name), _weapon(NULL) {
 	std::cout << "HumanB, " << name << " is created" << std::endl;
-	_weapon = NULL;
 }
 
 void HumanB::attack () {
@@ -17,9 +15,7 @@ void HumanB::attack () {
 
 const std::string &HumanB::getName() {
 	
-	std::string &name = _name;
-
-	return (name);
+	return (_name);
 }
 
 std::string HumanB::getWeapon() {

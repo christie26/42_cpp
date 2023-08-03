@@ -1,4 +1,4 @@
-NAME		=	string
+NAME		=	a.out
 
 SRCS		= 	main.cpp
 

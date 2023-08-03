@@ -3,6 +3,7 @@
 # define HUMANB_HPP
 
 #include <string>
+#include <iostream>
 #include "Weapon.hpp"
 
 class HumanB {
@@ -18,7 +19,7 @@ public:
 
 private:
 	std::string _name;
-	Weapon		*_weapon;
+	Weapon*		_weapon;
 
 };
 

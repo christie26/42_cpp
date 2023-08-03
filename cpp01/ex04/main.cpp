@@ -1,8 +1,9 @@
 
 #include "Sed.hpp"
-#include <iostream>
-#include <fstream>
-#include <string>
+
+void leak() {
+	system("leaks sed");
+}
 
 int main(int ac, char **av)
 {
@@ -17,6 +18,8 @@ int main(int ac, char **av)
 	std::ofstream WriteFile = sed.getWriteFile();
 	
 	sed.copyRoutine(ReadFile, WriteFile);
+
+	// atexit(&leak);
 
 	return 0;
 }

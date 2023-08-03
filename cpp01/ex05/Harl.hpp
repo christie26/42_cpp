@@ -10,12 +10,6 @@ class Harl {
 public:
 	Harl();
 	void complain( std::string level );
-	enum Index {
-        DEBUG,
-        INFO,
-        WARNING,
-		ERROR
-    };
 
 private:
     void (Harl::*funcPtr[4])(); // Array of pointers to member functions

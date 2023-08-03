@@ -1,11 +1,9 @@
 
 #include "Zombie.hpp"
 
-Zombie* zombieHorde( int N, std::string name );
-
-// void leak() {
-// 	system("leaks zombie");
-// }
+void leak() {
+	system("leaks zombie");
+}
 
 int main() {
 

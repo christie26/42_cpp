@@ -27,6 +27,8 @@ private:
 	void warning( void );
 	void error( void );
 
+	int getIndex ( );
+
 };
 
 #endif

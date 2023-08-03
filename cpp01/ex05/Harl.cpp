@@ -10,23 +10,13 @@ Harl::Harl() {
 }
 
 void Harl::complain(std::string level) {
-    int index = -1;
 
-    if (level == "DEBUG")
-        index = DEBUG;
-    if (level == "INFO")
-        index = INFO;
-    if (level == "WARNING")
-        index = WARNING;
-    if (level == "ERROR")
-        index = ERROR;
+    std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
-    if (index == -1) {
-        std::cout << "Invalid complaint level." << std::endl;
-        return ;
+    for (int i = 0; i < 4; i++) {
+        if (level == levels[i])
+            (this->*funcPtr[i])();
     }
-    
-    (this->*funcPtr[index])();
 }
 
 void Harl::debug( void ) {

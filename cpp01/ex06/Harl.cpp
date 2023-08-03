@@ -9,7 +9,7 @@ Harl::Harl( std::string level ) : _level(level) {
     funcPtr[3] = &Harl::error;
 }
 
-void Harl::complain() {
+int Harl::getIndex ( ) {
     
     int index = -1;
 
@@ -21,8 +21,13 @@ void Harl::complain() {
         index = WARNING;
     if (this->_level == "ERROR")
         index = ERROR;
+    
+    return (index);
+}
 
-    switch (index) {
+void Harl::complain( ) {
+    
+    switch (getIndex()) {
         case DEBUG:
             (this->*funcPtr[DEBUG])();
         case INFO:

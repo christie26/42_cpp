@@ -3,12 +3,13 @@
 # define HUMANA_HPP
 
 #include <string>
+#include <iostream>
 #include "Weapon.hpp"
 
 class HumanA {
 
 public:
-	HumanA(std::string name, Weapon& weapon);
+	HumanA( std::string name, Weapon& weapon );
 
 	const std::string&	getName();
 	std::string			getWeapon();

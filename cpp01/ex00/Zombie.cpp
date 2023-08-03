@@ -1,6 +1,5 @@
 
 #include "Zombie.hpp"
-#include <iostream>
 
 Zombie::Zombie( void ) {
 	std::cout << "<no name>" << " is created" << std::endl;

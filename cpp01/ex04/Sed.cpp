@@ -29,7 +29,7 @@ std::ofstream Sed::getWriteFile () {
 void Sed::copyRoutine(std::ifstream& ReadFile, std::ofstream& WriteFile) {
 	
     std::string buffer;
-    size_t len1 = this->_s1.length();
+    size_t len_s1 = this->_s1.length();
 
     while (std::getline(ReadFile, buffer)) {
         size_t found = buffer.find(this->_s1);
@@ -38,7 +38,7 @@ void Sed::copyRoutine(std::ifstream& ReadFile, std::ofstream& WriteFile) {
         while (found != std::string::npos) {
             WriteFile << buffer.substr(start, found - start);
             WriteFile << this->_s2;
-            start = found + len1;
+            start = found + len_s1;
             found = buffer.find(this->_s1, start);
         }
 

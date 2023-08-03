@@ -1,31 +1,32 @@
 
 #include "Zombie.hpp"
 
-Zombie* newZombie( std::string name );
-void	randomChump( std::string name );
-
-// void leak() {
-// 	system("leaks zombie");
-// }
+void leak() {
+	system("leaks zombie");
+}
 
 int main() {
 
-// declare directly and annoouce
-{
-	Zombie gam = Zombie("gam");
-	gam.announce();
-}
+	{
+		Zombie gam = Zombie("gam");
+		gam.announce();
+	}
+	std::cout << std::endl;
 
-// use randomChump
 	randomChump("gon");
-
-// use newZombie
-	Zombie *lee = newZombie("lee");
-	delete lee;
-
-// anonymous zombie
+	
+	std::cout << std::endl;
+	
+	Zombie* lee;
+	{
+		lee = newZombie("lee");
+	}
+	std::cout << std::endl;
+	
 	Zombie gun = Zombie();
+	lee->announce();
 	gun.announce();
+	delete lee;
 
 	// atexit (&leak);
 }
