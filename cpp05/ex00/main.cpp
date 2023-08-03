@@ -3,15 +3,34 @@
 
 int main( void ) {
 
-	Bureaucrat Alice("Alice", 3);
-	Bureaucrat Daniel("Daniel", 148);
-	Bureaucrat Bob("Bob", -1);
-	Bureaucrat Chris("Chris", 170);
-	
+	Bureaucrat Alice;
+	Bureaucrat Daniel;
+	Bureaucrat Bob;
+	Bureaucrat Chris;
+
+	try { 
+		Alice = Bureaucrat("Alice", 10);
+	} catch ( std::exception &e ) {
+		std::cout << "Alice" << Red << e.what() << Reset << std::endl;
+	}
+	try { 
+		Daniel = Bureaucrat("Daniel", 148);
+	} catch ( std::exception &e ) {
+		std::cout << "Daniel" << Red << e.what() << Reset << std::endl;
+	}
+	try { 
+		Bob = Bureaucrat("Bob", -1);
+	} catch ( std::exception &e ) {
+		std::cout << "Bob" << Red << e.what() << Reset << std::endl;
+	}
+	try { 
+		Chris = Bureaucrat("Chris", 170);
+	} catch ( std::exception &e ) {
+		std::cout << "Chris" << Red << e.what() << Reset << std::endl;
+	}
+
 	std::cout << Alice << std::endl;
 	std::cout << Daniel << std::endl;
-	std::cout << Bob << std::endl;
-	std::cout << Chris << std::endl;
 	
 	Alice.increaseGrade();
 	Alice.increaseGrade();

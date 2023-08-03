@@ -1,6 +1,6 @@
 NAME		=	a.out
 
-SRCS		= 	main.cpp Bureaucrat.cpp PrintColor.cpp
+SRCS		= 	main.cpp Bureaucrat.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
