@@ -1,11 +1,11 @@
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
-#include "PrintColor.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat ( const std::string name, int grade ) 
 : _name ( name ) {
-	printConstructor("Bureaucrat");
+	std::cout << Green << "Bureaucrat" << ", "
+			<< Reset << "Default constructor called" << std::endl;
 
     try {
         handleInvalidGrade(grade);
@@ -55,7 +55,7 @@ void Bureaucrat::handleInvalidGrade(int grade) {
         throw std::invalid_argument(" grade too low");
 }
 
-void Bureaucrat::signForm( Form& form ) {
+void Bureaucrat::signForm( AForm& form ) {
 	
 	try {
         form.beSigned(*this);

@@ -5,10 +5,15 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include "AForm.hpp"
 
-#include "Form.hpp"
+#define Red "\033[1;31m"
+#define Green "\033[1;32m"
+#define Yellow "\033[1;33m"
+#define Blue "\033[1;34m"
+#define Reset "\033[1;0m"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 
@@ -26,7 +31,7 @@ public:
 	void decreaseGrade();
 
 	void handleInvalidGrade( int grade );
-	void signForm( Form& form );
+	void signForm( AForm& form );
 
 };
 

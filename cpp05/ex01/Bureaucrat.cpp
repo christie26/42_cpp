@@ -1,19 +1,39 @@
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
-#include "PrintColor.hpp"
+
+Bureaucrat::Bureaucrat () {
+	std::cout	<< Green << "Bureaucrat" << ", "
+				<< Reset << "Default constructor called" << std::endl;
+}
 
 Bureaucrat::Bureaucrat ( const std::string name, int grade ) 
 : _name ( name ) {
-	printConstructor("Bureaucrat");
+	std::cout	<< Green << "Bureaucrat" << ", "
+				<< Reset << "Default constructor called" << std::endl;
 
-    try {
-        handleInvalidGrade(grade);
-        _grade = grade;
-    } catch (std::exception &e) {
-        std::cout << _name << Red << e.what() << Reset << std::endl;
-        _grade = 150;
-    }
+	handleInvalidGrade(grade);
+	_grade = grade;
+}
+
+Bureaucrat::~Bureaucrat () {
+	std::cout	<< Red << "Bureaucrat" << ", "
+				<< Reset << "Default destructor called" << std::endl;
+}
+
+Bureaucrat::Bureaucrat ( const Bureaucrat &bureaucrat)  
+: _name( bureaucrat._name ), _grade ( bureaucrat._grade ) {
+	std::cout	<< Yellow << "Bureaucrat" << ", "
+				<< Reset << "Copy constructor called" << std::endl;
+}
+
+Bureaucrat& Bureaucrat::operator= ( const Bureaucrat& bureaucrat ) {
+	std::cout	<< Yellow << "Bureaucrat" << ", "
+				<< Reset << "Copy assignment operator called" << std::endl;
+	if (this != &bureaucrat) {
+		const_cast<std::string&>(_name) = bureaucrat._name;
+		_grade = bureaucrat._grade;
+	}
+	return *this;
 }
 
 std::string Bureaucrat::getName( void ) const {
@@ -56,14 +76,14 @@ void Bureaucrat::handleInvalidGrade(int grade) {
 }
 
 void Bureaucrat::signForm( Form& form ) {
-	
-	try {
+    
+    try {
         form.beSigned(*this);
-		std::cout << getName() << " signed " << form.getName() << std::endl;
-		return ;
-	} catch (std::exception &e) {
-		std::cout << getName() << " couldn't sign " << form.getName() << " beacuase of low level."<< std::endl;
-		return ;
+        std::cout << getName() << " signed " << form.getName() << std::endl;
+        return ;
+    } catch (std::exception &e) {
+        std::cout << getName() << " couldn't sign " << form.getName() << " beacuase of low level."<< std::endl;
+        return ;
     }
 }
 

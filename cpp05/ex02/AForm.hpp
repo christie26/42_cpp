@@ -1,6 +1,6 @@
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <string>
 #include <iostream>
@@ -10,7 +10,7 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 
 private:
 	const std::string _name;
@@ -20,11 +20,11 @@ private:
 
 public:
 
-	Form ( void );
-	Form ( const std::string name, int signGrade, int executeGraded );
-	~Form( void );
-	Form (const Form &form);
-	Form& operator= (const Form& form);
+	AForm ( void );
+	AForm ( const std::string name, int signGrade, int executeGraded );
+	~AForm( void );
+	AForm (const AForm &form);
+	AForm& operator= (const AForm& form);
 
 	std::string getName( void ) const ;
 	int getSignGrade( void ) const ;
@@ -34,6 +34,6 @@ public:
 	void beSigned( Bureaucrat& bureaucrat );
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& form);
+std::ostream& operator<<(std::ostream& os, const AForm& form);
 
 #endif
