@@ -9,11 +9,16 @@ Form::Form ( const std::string name, int signGrade, int executeGrade )
     try {
         handleInvalidGrade(signGrade);
         _signGrade = signGrade;
+    } catch (std::exception &e) {
+        std::cout << _name << Red << e.what() << Reset << std::endl;
+        _signGrade = 150;
+    }
+    try {
         handleInvalidGrade(executeGrade);
         _executeGrade = executeGrade;
     } catch (std::exception &e) {
         std::cout << _name << Red << e.what() << Reset << std::endl;
-        _signGrade = 150;
+        _executeGrade = 150;
     }
 }
 
