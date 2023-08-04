@@ -13,7 +13,7 @@
 #define Blue "\033[1;34m"
 #define Reset "\033[1;0m"
 
-class AForm;
+class Form;
 
 class Bureaucrat {
 
@@ -23,15 +23,20 @@ private:
 
 public:
 
+	Bureaucrat ( void );
 	Bureaucrat ( const std::string name, int grade );
-	
+	~Bureaucrat( void );
+	Bureaucrat (const Bureaucrat &bureaucrat);
+	Bureaucrat& operator= (const Bureaucrat& bureaucrat);
+		
 	std::string getName() const ;
 	int getGrade() const ;
 	void increaseGrade();
 	void decreaseGrade();
 
 	void handleInvalidGrade( int grade );
-	void signForm( AForm& form );
+	void signForm( Form& form );
+	void executeForm( Form const & form );
 
 };
 
