@@ -32,6 +32,7 @@ public:
 
 	void handleInvalidGrade( int grade ) const;
 	void beSigned( Bureaucrat& bureaucrat );
+	int isSigned( void ) const ;
 
 	virtual void execute(Bureaucrat const & executor) const = 0;
 };

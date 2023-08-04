@@ -45,8 +45,13 @@ Form& Form::operator= ( const Form& form ) {
 
 void Form::beSigned( Bureaucrat& bureau ) {
 
-    handleInvalidGrade(getSignGrade() - bureau.getGrade() + 1);
+	if (getSignGrade() < bureau.getGrade())
+		throw std::invalid_argument(" bureau's grade is low to sign.");
     _signed = true;
+}
+
+int Form::isSigned( void ) const {
+	return _signed;
 }
 
 void Form::handleInvalidGrade(int grade) const {
