@@ -13,31 +13,16 @@ int main( void ) {
 	Bureaucrat Alice;
 	Bureaucrat Bob;
 
-	try { 
-		John = PresidentialPardonForm("John");
-		std::cout << John << std::endl;
-		PresidentialPardonForm Iann(John); // to check copy constructor
-		std::cout << Iann << std::endl;
-	} catch ( std::exception &e ) {
-		std::cout << "John" << Red << e.what() << Reset << std::endl;
-	}
-	std::cout << std::endl;
+	John = PresidentialPardonForm("John");
+	std::cout << John << std::endl;
+	PresidentialPardonForm Iann(John); // to check copy constructor
+	std::cout << Iann << std::endl;
 	
-	try { 
-		Thoma = ShrubberyCreationForm("thoma");
-		std::cout << Thoma << std::endl;
-	} catch ( std::exception &e ) {
-		std::cout << "Thoma" << Red << e.what() << Reset << std::endl;
-	}
-	std::cout << std::endl;
+	Thoma = ShrubberyCreationForm("thoma");
+	std::cout << Thoma << std::endl;
 
-	try { 
-		Eti = RobotomyRequestForm("eti");
-		std::cout << Eti << std::endl;
-	} catch ( std::exception &e ) {
-		std::cout << "eti" << Red << e.what() << Reset << std::endl;
-	}
-	std::cout << std::endl;
+	Eti = RobotomyRequestForm("eti");
+	std::cout << Eti << std::endl;
 
 	try { 
 		Alice = Bureaucrat("Alice", 30);
