@@ -16,13 +16,13 @@ private:
 public:
 
 	Fixed();
-	Fixed( const int intValue);
-	Fixed( const float floatValue);
+	Fixed( const int intValue );
+	Fixed( const float floatValue );
 	
-	Fixed (const Fixed &fixed);
+	Fixed (const Fixed &fixed );
 	~Fixed();
 	
-	Fixed& operator= (const Fixed& fixed);
+	Fixed& operator= (const Fixed& fixed );
 
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
@@ -32,6 +32,6 @@ public:
 
 };
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+std::ostream& operator<<( std::ostream& os, const Fixed& fixed );
 
 #endif

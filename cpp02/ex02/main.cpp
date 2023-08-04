@@ -19,10 +19,6 @@ int main( void ) {
 	else
 		std::cout << "a is not bigger than b" << std::endl;
 	
-	std::cout << Fixed::max( a, b ) << std::endl;
-	Fixed& ref_a = a;
-	std::cout << Fixed::max( ref_a, b ) << std::endl;
-	
 	std::cout << "----------------" << std::endl;
 
 	Fixed e;
@@ -42,6 +38,8 @@ int main( void ) {
 	std::cout << "f:  "	<< f  << std::endl;
 	std::cout << "----------------" << std::endl;
 
+	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::max( f1, f2 ) << std::endl;
 
 	return 0;
 }

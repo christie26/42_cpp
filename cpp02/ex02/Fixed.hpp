@@ -17,33 +17,35 @@ public:
 	Fixed( const float floatValue );
 	Fixed( const Fixed &fixed );
 	~Fixed();
+	Fixed&	operator= ( const Fixed& fixed );
 	
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
 	
-	Fixed&	operator= (const Fixed& fixed);
 	
-	bool operator>  (const Fixed& fixed);
-	bool operator<  (const Fixed& fixed);
-	bool operator>= (const Fixed& fixed);
-	bool operator<= (const Fixed& fixed);
-	bool operator== (const Fixed& fixed);
-	bool operator!= (const Fixed& fixed);
+	bool operator>  ( const Fixed& fixed );
+	bool operator<  ( const Fixed& fixed );
+	bool operator>= ( const Fixed& fixed );
+	bool operator<= ( const Fixed& fixed );
+	bool operator== ( const Fixed& fixed );
+	bool operator!= ( const Fixed& fixed );
 
-	Fixed operator+ (const Fixed& fixed);
-	Fixed operator- (const Fixed& fixed);
-	Fixed operator* (const Fixed& fixed);
-	Fixed operator/ (const Fixed& fixed);
+	Fixed operator+ ( const Fixed& fixed );
+	Fixed operator- ( const Fixed& fixed );
+	Fixed operator* ( const Fixed& fixed );
+	Fixed operator/ ( const Fixed& fixed );
 
 	Fixed&	operator++ ( void );
 	Fixed&	operator-- ( void );
 	Fixed	operator++( int );
 	Fixed	operator--( int );
 
-	static const Fixed& max(const Fixed& fixed1, const Fixed& fixed2);
-	static const Fixed& min(const Fixed& fixed1, const Fixed& fixed2);
+	static const Fixed& max( const Fixed& fixed1, const Fixed& fixed2 );
+	static const Fixed& min( const Fixed& fixed1, const Fixed& fixed2 );
+	static Fixed& max( Fixed& fixed1, Fixed& fixed2 );
+	static Fixed& min( Fixed& fixed1, Fixed& fixed2 );
 	
 /*
 Add these four public overloaded member functions to your class:
@@ -53,6 +55,6 @@ Add these four public overloaded member functions to your class:
 
 };
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+std::ostream& operator<<( std::ostream& os, const Fixed& fixed );
 
 #endif
