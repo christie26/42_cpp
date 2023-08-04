@@ -23,7 +23,11 @@ int main( void ) {
 	}	std::cout << std::endl;
 	
 	try { 
-		Alice = Bureaucrat("Alice", 8);
+		Alice = Bureaucrat("Alice", 7);
+		/* un-comment below to sign pipex */
+		// Alice.increaseGrade();
+		// Alice.increaseGrade();
+		// Alice.increaseGrade();
 		std::cout << Alice << std::endl;
 	} catch ( std::exception &e ) {
 		std::cout << "Alice" << Red << e.what() << Reset << std::endl;
@@ -31,15 +35,6 @@ int main( void ) {
 
 	Alice.signForm(webserv);
 	Alice.signForm(pipex);
-	Alice.increaseGrade();
-	Alice.increaseGrade();
-	Alice.increaseGrade();
-	Alice.signForm(pipex);
-
-
-
-
-	std::cout << std::endl;
 
 	return 0;
 }

@@ -45,7 +45,8 @@ int Form::getExecuteGrade( void ) const	{ return _executeGrade; }
 
 void Form::beSigned( Bureaucrat& bureau ) {
 
-    handleInvalidGrade(getSignGrade() - bureau.getGrade() + 1);
+	if (getSignGrade() < bureau.getGrade())
+		throw std::invalid_argument(" bureau's grade is low to sign.");
     _signed = true;
 }
 

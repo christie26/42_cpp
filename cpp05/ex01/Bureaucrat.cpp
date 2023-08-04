@@ -20,7 +20,7 @@ Bureaucrat::~Bureaucrat () {
 				<< Reset << "Default destructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat ( const Bureaucrat &bureaucrat)  
+Bureaucrat::Bureaucrat ( const Bureaucrat &bureaucrat )  
 : _name( bureaucrat._name ), _grade ( bureaucrat._grade ) {
 	std::cout	<< Yellow << "Bureaucrat" << ", "
 				<< Reset << "Copy constructor called" << std::endl;
@@ -46,29 +46,17 @@ int Bureaucrat::getGrade( void ) const {
 
 void Bureaucrat::increaseGrade() {
 
-	try {
-		handleInvalidGrade(_grade - 1);
-		_grade--;
-		std::cout << *this << std::endl;
-	} catch (std::exception &e) {
-        std::cout << _name << Red << e.what() << Reset << " to increase" << std::endl;
-		std::cout << *this << std::endl;
-    }
+	handleInvalidGrade(_grade - 1);
+	_grade--;
 }
 
 void Bureaucrat::decreaseGrade() {
 
-	try {
-		handleInvalidGrade(_grade + 1);
-		_grade++;
-		std::cout << *this << std::endl;
-	} catch (std::exception &e) {
-        std::cout << _name << Red << e.what() << Reset << " to decrease" << std::endl;
-		std::cout << *this << std::endl;
-    }
+	handleInvalidGrade(_grade + 1);
+	_grade++;
 }
 
-void Bureaucrat::handleInvalidGrade(int grade) {
+void Bureaucrat::handleInvalidGrade( int grade ) {
     if (grade < 1)
         throw std::invalid_argument(" grade too high");
     else if (grade > 150)
@@ -77,12 +65,13 @@ void Bureaucrat::handleInvalidGrade(int grade) {
 
 void Bureaucrat::signForm( Form& form ) {
     
-    try {
-        form.beSigned(*this);
-        std::cout << getName() << " signed " << form.getName() << std::endl;
-        return ;
-    } catch (std::exception &e) {
-        std::cout << getName() << " couldn't sign " << form.getName() << " beacuase of low level."<< std::endl;
+	try {
+		form.beSigned(*this);
+    	std::cout << getName() << " signed " << form.getName() << std::endl;
+	}
+
+    catch (std::exception &e) {
+        std::cout << getName() << " couldn't sign " << form.getName() << " beacuase" << e.what() << std::endl;
         return ;
     }
 }
