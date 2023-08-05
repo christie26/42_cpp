@@ -7,7 +7,7 @@ SRCS		= 	main.cpp Bureaucrat.cpp AForm.cpp \
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CXXFLAGS		= -std=c++98 -Wall -Wextra -Werror -g
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g
 
 all:		${NAME}
 

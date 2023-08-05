@@ -2,20 +2,26 @@
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
+#include <iostream>
+#include <string>
+
 class ScalarConverter {
 
 private:
 
-/*
-	Bureaucrat ( void );
-	Bureaucrat ( const std::string name, int grade );
-	~Bureaucrat( void );
-	Bureaucrat (const Bureaucrat &bureaucrat);
-	Bureaucrat& operator= (const Bureaucrat& bureaucrat);
-*/
+	ScalarConverter ( void );
+	~ScalarConverter( void );
+	ScalarConverter (const ScalarConverter &scalar);
+	ScalarConverter& operator= (const ScalarConverter& scalar);
 
 public:
-
+	enum Type {
+        CHAR,
+        INT,
+        FLOAT,
+		DOUBLE
+    };
+	void convert ( std::string str );
 };
 
 #endif
