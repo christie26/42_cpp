@@ -10,13 +10,13 @@ ClapTrap::~ClapTrap () {
 	std::cout << Red << "Clap, Destructor called" << Reset << std::endl;
 }
 
-ClapTrap::ClapTrap (ClapTrap &clapTrap) 
+ClapTrap::ClapTrap ( const ClapTrap &clapTrap )
 : _name(clapTrap._name), _hitPoints(clapTrap._hitPoints), 
 _energyPoints(clapTrap._energyPoints), _attackDamage(clapTrap._attackDamage) {
 	std::cout << "Copy constructor called" << std::endl;
 }
 
-ClapTrap& ClapTrap::operator= (const ClapTrap& clapTrap) {
+ClapTrap& ClapTrap::operator= ( const ClapTrap& clapTrap ) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &clapTrap) {
 		this->_name = clapTrap._name;

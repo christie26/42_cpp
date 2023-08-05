@@ -21,17 +21,16 @@ protected:
 	int			_hitPoints;
 	int			_energyPoints;
 	int			_attackDamage;
-	bool		stillAlive(void);
-	void		printStatus(void);
+	bool		stillAlive( void );
+	void		printStatus( void );
 
 public:
-	ClapTrap(std::string name);
-	~ClapTrap( void );
+	ClapTrap( std::string name );
+	virtual ~ClapTrap( void );
+	ClapTrap ( const ClapTrap &clapTrap );
+	ClapTrap& operator= ( const ClapTrap& clapTrap );
 
-	ClapTrap (ClapTrap &clapTrap); // copy constructor 
-	ClapTrap& operator= (const ClapTrap& clapTrap); // copy assignment operator overload
-
-	virtual void attack(const std::string& target);
+	virtual void attack( const std::string& target );
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
