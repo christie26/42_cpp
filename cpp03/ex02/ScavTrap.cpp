@@ -13,22 +13,19 @@ ScavTrap::~ScavTrap () {
 	std::cout << Red << "Scav, Destructor called" << Reset <<std::endl;
 }
 
-void ScavTrap::attack(const std::string& target) {
-
-	if (_hitPoints <= 0) {
-		std::cout << _name << " doesn't have any hit points" << std::endl;
-	} else if (_energyPoints <= 0) {
-		std::cout << _name << " doesn't have any energy points" << std::endl;
-	} else {
-		_energyPoints--;
-		std::cout	<< "ScavTrap " << Yellow << _name << Reset
-					<< " attacks " << Yellow << target << Reset
-					<< " causing " << Yellow << _attackDamage << Reset
-					<< " points of damage!" 
-					<< std::endl;
-	}
+void ScavTrap::attack( const std::string& target ) {
+	if (!stillAlive())
+		return ;
+	_energyPoints--;
+	std::cout	<< "ScavTrap " << Yellow << _name << Reset
+				<< " attacks " << Yellow << target << Reset
+				<< " causing " << Yellow << _attackDamage << Reset
+				<< " points of damage!" 
+				<< std::endl;
+	printStatus();
 }
 
 void ScavTrap::guardGate() {
-	std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
+	std::cout	<< "ScavTrap " << Yellow << _name << Reset
+				 << " is now in Gate keeper mode." << std::endl;
 }

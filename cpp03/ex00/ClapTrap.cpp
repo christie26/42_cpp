@@ -49,7 +49,7 @@ void ClapTrap::printStatus() {
 				<< std::endl;
 }
 
-void ClapTrap::setAttackDamage( int amount ) {
+void ClapTrap::setAttackDamage( unsigned int amount ) {
 	_attackDamage = amount;
 }
 

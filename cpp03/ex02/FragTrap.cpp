@@ -19,16 +19,13 @@ void FragTrap::highFivesGuys(void) {
 
 void FragTrap::attack(const std::string& target) {
 
-	if (_hitPoints <= 0) {
-		std::cout << _name << " doesn't have any hit points" << std::endl;
-	} else if (_energyPoints <= 0) {
-		std::cout << _name << " doesn't have any energy points" << std::endl;
-	} else {
-		_energyPoints--;
-		std::cout	<< "FragTrap " << Cyan << _name << Reset
-					<< " attacks " << Cyan << target << Reset
-					<< " causing " << Cyan << _attackDamage << Reset
-					<< " points of damage!" 
-					<< std::endl;
-	}
+	if (!stillAlive())
+		return ;
+	_energyPoints--;
+	std::cout	<< "FragTrap " << Cyan << _name << Reset
+				<< " attacks " << Cyan << target << Reset
+				<< " causing " << Cyan << _attackDamage << Reset
+				<< " points of damage!" 
+				<< std::endl;
+	printStatus();
 }

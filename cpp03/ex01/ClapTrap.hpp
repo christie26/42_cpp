@@ -34,8 +34,6 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-	void setAttackDamage(int amount);
-
 };
 
 #endif

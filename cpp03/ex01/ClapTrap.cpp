@@ -49,10 +49,6 @@ void ClapTrap::printStatus() {
 				<< std::endl;
 }
 
-void ClapTrap::setAttackDamage(int amount) {
-	_attackDamage = amount;
-}
-
 void ClapTrap::attack(const std::string& target) {
 
 	if (!stillAlive())
