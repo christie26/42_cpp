@@ -4,15 +4,15 @@ SRCS		= 	main.cpp Bureaucrat.cpp Form.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CFLAGS		= -std=c++98 -Wall -Wextra -Werror -g
+CXXFLAGS		= -std=c++98 -Wall -Wextra -Werror -g
 
 all:		${NAME}
 
 .cpp.o:
-			$(CXX) $(CFLAGS) -c $< -o $@
+			$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): 	$(OBJS)
-			$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 			${RM} ${OBJS}

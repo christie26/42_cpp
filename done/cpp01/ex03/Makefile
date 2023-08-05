@@ -5,15 +5,15 @@ SRCS		= 	main.cpp Weapon.cpp \
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CFLAGS		= -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS		= -std=c++98 -Wall -Wextra -Werror
 
 all:		${NAME}
 
 .cpp.o:
-			$(CXX) $(CFLAGS) -c $< -o $@
+			$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): 	$(OBJS)
-			$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 			${RM} ${OBJS}
