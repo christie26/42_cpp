@@ -1,6 +1,7 @@
 
-#include "Bureaucrat.hpp"
+#include "ScalarConverter.hpp"
 
+/*
 Bureaucrat::Bureaucrat () {
 	std::cout	<< Green << "Bureaucrat" << ", "
 				<< Reset << "Default constructor called" << std::endl;
@@ -35,35 +36,4 @@ Bureaucrat& Bureaucrat::operator= ( const Bureaucrat& bureaucrat ) {
 	}
 	return *this;
 }
-
-std::string Bureaucrat::getName( void ) const {
-	return _name;
-}
-
-int Bureaucrat::getGrade( void ) const {
-	return _grade;
-}
-
-void Bureaucrat::increaseGrade() {
-
-	handleInvalidGrade(_grade - 1);
-	_grade--;
-}
-
-void Bureaucrat::decreaseGrade() {
-
-	handleInvalidGrade(_grade + 1);
-	_grade++;
-}
-
-void Bureaucrat::handleInvalidGrade( int grade ) {
-    if (grade < 1)
-        throw std::invalid_argument(" grade too high");
-    else if (grade > 150)
-        throw std::invalid_argument(" grade too low");
-}
-
-std::ostream& operator<< (std::ostream& os, const Bureaucrat& bureaucrat) {
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
-	return (os);
-}
+*/
