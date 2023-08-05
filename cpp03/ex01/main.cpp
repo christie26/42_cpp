@@ -1,32 +1,27 @@
+
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
 int main( void ) {
 
 	{
-		ClapTrap A("Alice");
-		ClapTrap E("Etinne");
-
-		A.setAttackDamage(5);
-		A.attack("Etienne");
-		E.takeDamage(5);
-		E.beRepaired(7);
-	}
-
-	std::cout << std::endl << std::endl;
-
-	{
+		// stack
 		ScavTrap C("Chistie");
+		ScavTrap D("Daniel");
 		C.guardGate();
-		C.attack("Christie2");
-		ScavTrap D = C;
+		C.attack("Daniel");
 		D.takeDamage(20);
 		D.takeDamage(20);
-		D.takeDamage(20);
+		// change the order to kill Daniel ! 
 		D.beRepaired(30);
-		
-		ScavTrap happy("happy");
-		ClapTrap *h = &happy;
-		h->attack("sad");
+		D.takeDamage(70);
+	}
+	std::cout << std::endl;
+	{
+		// heap
+		ScavTrap* happy = new ScavTrap("happy");
+		happy->attack("sad");
+		delete happy;
+
 	}
 }

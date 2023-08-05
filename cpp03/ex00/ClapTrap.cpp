@@ -70,7 +70,6 @@ void ClapTrap::takeDamage( unsigned int amount ) {
 	
 	if (!stillAlive())
 		return ;
-	_energyPoints--;
 	_hitPoints -= amount;
 	std::cout	<< "ClapTrap " << Green << _name << Reset
 				<< " takes damage " << Green << amount << Reset

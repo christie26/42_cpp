@@ -4,7 +4,7 @@ SRCS		= 	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CXXFLAGS		= -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror
 
 all:		${NAME}
 

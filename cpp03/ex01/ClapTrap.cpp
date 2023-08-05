@@ -29,10 +29,12 @@ ClapTrap& ClapTrap::operator= ( const ClapTrap& clapTrap ) {
 
 bool ClapTrap::stillAlive() {
 	if (_hitPoints <= 0) {
-		std::cout << _name << " doesn't have any hit points" << std::endl;
+		std::cout << _name << " doesn't have "
+				<< Red << "any hit points" << Reset << std::endl;
 		return false;
 	} else if (_energyPoints <= 0) {
-		std::cout << _name << " doesn't have any energy points" << std::endl;
+		std::cout << _name << " doesn't have "
+				<< Red << "any energy points" << Reset << std::endl;
 		return false;
 	}
 	return true;
@@ -40,8 +42,10 @@ bool ClapTrap::stillAlive() {
 
 void ClapTrap::printStatus() {
 	std::cout	<< Green << _name << Reset
-				<< " now has " << Green << _hitPoints << Reset
-				<< " points!" 
+				<< " has " << Green << _hitPoints << Reset
+				<< " hit points, and " 
+				<< Green << _energyPoints << Reset
+				<< " energy points!" 
 				<< std::endl;
 }
 
@@ -67,7 +71,6 @@ void ClapTrap::takeDamage(unsigned int amount) {
 	
 	if (!stillAlive())
 		return ;
-	_energyPoints--;
 	_hitPoints -= amount;
 	std::cout	<< "ClapTrap " << Green << _name << Reset
 				<< " takes damage " << Green << amount << Reset
