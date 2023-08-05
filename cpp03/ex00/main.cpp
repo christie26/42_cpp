@@ -1,3 +1,4 @@
+
 #include "ClapTrap.hpp"
 
 int main( void ) {
@@ -7,6 +8,7 @@ int main( void ) {
 	A.setAttackDamage(5);
 	A.attack("Etienne");
 	E.takeDamage(5);
-	E.takeDamage(10);
+	//  uncomment the line below to see more !
+	// E.takeDamage(10);
 	E.beRepaired(7);
 }
