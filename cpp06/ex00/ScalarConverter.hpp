@@ -6,6 +6,7 @@
 #include <string>
 #include <cctype>
 
+
 enum Type {
 	CHAR,
 	INT,
@@ -17,6 +18,11 @@ enum Type {
 class ScalarConverter {
 
 private:
+
+	static int		_intValue;
+	static char		_charValue;
+	static float	_floatValue;
+	static double	_doubleValue;
 
 	ScalarConverter ( void );
 	~ScalarConverter( void );

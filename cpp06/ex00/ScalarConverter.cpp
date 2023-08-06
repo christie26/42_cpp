@@ -20,10 +20,17 @@ ScalarConverter& ScalarConverter::operator= ( const ScalarConverter& ) {
 }
 
 /*----------------------------------------------------*/
+// int		intValue;
+// char	charValue;
+// float	floatValue;
+// double	doubleValue;
 
 void ScalarConverter::convert( const std::string& str ) {
 
 	int type = getType(str);
-	std::cout << "This is " << type << std::endl;
 
+	(void)(type);
+	// if (type == INT)
+		// intCenter(str);
+	
 }
