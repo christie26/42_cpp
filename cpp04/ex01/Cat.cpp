@@ -14,13 +14,13 @@ Cat::~Cat () {
 	delete(_catBrain);
 }
 
-Cat::Cat (const Cat &cat) {
+Cat::Cat ( const Cat &cat ) {
 	printCopyConstructor("Cat");
 	this->_type = cat._type;
 	_catBrain = new Brain(*cat._catBrain);
 }
 
-Cat& Cat::operator= (const Cat& cat) {
+Cat& Cat::operator= ( const Cat& cat ) {
 	printCopyAssignmentOperator("Cat");
 	if (this != &cat) {
 		this->_type = cat._type;
@@ -37,6 +37,6 @@ Brain* Cat::getBrain( void ) {
 	return (_catBrain);
 }
 
-void Cat::setBrain( Brain* brain) {
+void Cat::setBrain( Brain* brain ) {
 	*_catBrain = *brain;
 }

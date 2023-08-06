@@ -6,6 +6,10 @@
 #include "WrongDog.hpp"
 #include "WrongCat.hpp"
 
+void leak(void) {
+	system("leaks a.out");
+}
+
 int main( void ) {
 	{
 		Animal a;
@@ -21,7 +25,7 @@ int main( void ) {
 		const Animal* dog = new Dog();
 		std::cout << cat->getType() << " " << std::endl;
 		std::cout << dog->getType() << " " << std::endl;
-		cat->makeSound(); //will output the cat sound!
+		cat->makeSound();
 		dog->makeSound();
 		meta->makeSound();
 
@@ -36,7 +40,7 @@ int main( void ) {
 		const WrongAnimal* dog = new WrongDog();
 		std::cout << cat->getType() << " " << std::endl;
 		std::cout << dog->getType() << " " << std::endl;
-		cat->makeSound(); //will output the cat sound!
+		cat->makeSound();
 		dog->makeSound();
 		meta->makeSound();
 
@@ -44,6 +48,8 @@ int main( void ) {
 		delete(cat);
 		delete(dog);
 	}
+
+	// atexit(&leak);
 	return 0;
 
 }
