@@ -4,6 +4,14 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
+
+enum Type {
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE
+};
 
 class ScalarConverter {
 
@@ -14,14 +22,14 @@ private:
 	ScalarConverter (const ScalarConverter &scalar);
 	ScalarConverter& operator= (const ScalarConverter& scalar);
 
+	static int getType( std::string str );
+	// bool isChar ( std::string str );
+	// bool isInt ( std::string str );
+	// bool isFloat ( std::string str );
+	// bool isDouble ( std::string str );
+
 public:
-	enum Type {
-        CHAR,
-        INT,
-        FLOAT,
-		DOUBLE
-    };
-	void convert ( std::string str );
+	static void convert ( const std::string& str );
 };
 
 #endif

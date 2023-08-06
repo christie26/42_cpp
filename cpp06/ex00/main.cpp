@@ -1,45 +1,17 @@
 
-#include "Bureaucrat.hpp"
+#include "ScalarConverter.hpp"
 
-int main( void ) {
+int main( int ac, char **av ) {
 
-	Bureaucrat Alice;
-	Bureaucrat Daniel;
-	Bureaucrat Bob;
-	Bureaucrat Chris;
-
-	try { 
-		Alice = Bureaucrat("Alice", 10);
-		std::cout << Alice << std::endl;
-		Alice.increaseGrade();
-		Alice.increaseGrade();
-		Alice.increaseGrade();
-	} catch ( std::exception &e ) {
-		std::cout << "Alice" << Red << e.what() << Reset << std::endl;
+	if (ac != 2) {
+		std::cout << "Error: put only one argument !" << std::endl;
+		return (1);
+	} else if (av[1][0] == 0) {
+		std::cout << "Error: input is empty !" << std::endl;
+		return (1);
 	}
 
-	try { 
-		Daniel = Bureaucrat("Daniel", 148);
-		std::cout << Daniel << std::endl;
-		Daniel.decreaseGrade();
-		Daniel.decreaseGrade();
-		Daniel.decreaseGrade();
-		Daniel.decreaseGrade();
-	} catch ( std::exception &e ) {
-		std::cout << "Daniel" << Red << e.what() << Reset << std::endl;
-	}
-
-	try {
-		Bob = Bureaucrat("Bob", -1);
-	} catch ( std::exception &e ) {
-		std::cout << "Bob" << Red << e.what() << Reset << std::endl;
-	}
-	
-	try { 
-		Chris = Bureaucrat("Chris", 170);
-	} catch ( std::exception &e ) {
-		std::cout << "Chris" << Red << e.what() << Reset << std::endl;
-	}
+	ScalarConverter::convert(av[1]);
 
 	return 0;
 }
