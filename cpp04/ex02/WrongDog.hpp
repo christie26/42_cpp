@@ -10,8 +10,8 @@ public:
 
 	WrongDog( void );
 	~WrongDog( void );
-	WrongDog (WrongDog &dog);
-	WrongDog& operator= (const WrongDog& dog);
+	WrongDog ( const WrongDog &dog );
+	WrongDog& operator= ( const WrongDog& dog );
 
 	void makeSound( void ) const;
 

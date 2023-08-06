@@ -12,11 +12,11 @@ private:
 public:
 	Brain( void );
 	~Brain( void );
-	Brain (const Brain &brain);
-	Brain& operator= (const Brain& brain);
+	Brain ( const Brain &brain );
+	Brain& operator= ( const Brain& brain );
 
-	std::string getIdea(int index);
-	void setIdea(int index, std::string idea);
+	std::string getIdea( int index );
+	void setIdea( int index, std::string idea );
 };
 
 #endif

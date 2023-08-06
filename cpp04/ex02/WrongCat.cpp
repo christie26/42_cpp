@@ -11,12 +11,12 @@ WrongCat::~WrongCat () {
 	printDestructor("WrongCat");
 }
 
-WrongCat::WrongCat (WrongCat &wrongCat) {
+WrongCat::WrongCat ( const WrongCat &wrongCat ) {
 	printCopyConstructor("WrongCat");
 	this->_type = wrongCat._type;
 }
 
-WrongCat& WrongCat::operator= (const WrongCat& wrongCat) {
+WrongCat& WrongCat::operator= ( const WrongCat& wrongCat ) {
 	printCopyAssignmentOperator("WrongCat");
 	if (this != &wrongCat) {
 		this->_type = wrongCat._type;

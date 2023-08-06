@@ -10,19 +10,19 @@ class Animal {
 
 protected:
 	std::string _type;
+	// Brain* _brain;
 
 public:
 
 	Animal( void );
 	virtual ~Animal( void );
-	Animal (const Animal &animal);
-	Animal& operator= (const Animal& animal);
+	Animal ( const Animal &animal );
+	Animal& operator= ( const Animal& animal );
 
 	const std::string getType () const;
-	
-	void setType(std::string type);
+	void setType( std::string type );
 
-	virtual void makeSound( void ) const = 0; // pure virtual function
+	virtual void makeSound( void ) const = 0;
 	virtual Brain* getBrain( void );
 };
 
