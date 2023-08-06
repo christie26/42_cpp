@@ -1,6 +1,7 @@
-NAME		=	a.out
+NAME		=	convert
 
-SRCS		= 	main.cpp
+SRCS		= 	main.cpp ScalarConverter.cpp \
+				typeChecker.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
