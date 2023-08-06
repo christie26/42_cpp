@@ -11,12 +11,12 @@ WrongDog::~WrongDog () {
 	printDestructor("WrongDog");
 }
 
-WrongDog::WrongDog (WrongDog &wrongDog) {
+WrongDog::WrongDog ( const WrongDog &wrongDog ) {
 	printCopyConstructor("WrongDog");
 	this->_type = wrongDog._type;
 }
 
-WrongDog& WrongDog::operator= (const WrongDog& wrongDog) {
+WrongDog& WrongDog::operator= ( const WrongDog& wrongDog ) {
 	printCopyAssignmentOperator("WrongDog");
 	if (this != &wrongDog) {
 		this->_type = wrongDog._type;

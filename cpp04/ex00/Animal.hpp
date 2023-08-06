@@ -12,16 +12,16 @@ protected:
 
 public:
 
-	Animal( void );
-	virtual ~Animal( void );
-	Animal (Animal &animal);
-	Animal& operator= (const Animal& animal);
+	Animal ( void );
+	virtual ~Animal ( void );
+	Animal ( const Animal &animal );
+	Animal& operator= ( const Animal& animal );
 
-	const std::string getType () const;
-	
-	void setType(std::string type);
+	const std::string getType() const;
+	void setType( std::string type );
 
 	virtual void makeSound( void ) const;
+
 };
 
 #endif
