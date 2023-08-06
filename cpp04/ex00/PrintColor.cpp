@@ -1,7 +1,4 @@
 
-#include <iostream>
-#include <string>
-
 #include "PrintColor.hpp"
 
 void printConstructor(std::string className) {

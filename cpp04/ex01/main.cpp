@@ -9,6 +9,7 @@
 void leak(void) {
 	system("leaks a.out");
 }
+
 int main( void ) {
 
 	Brain smartBrain;
@@ -25,7 +26,9 @@ int main( void ) {
 	Cat* cat2 = new Cat();
 	Cat* cat3 = new Cat();
 	
+	std::cout << std::endl;
 	dog1->setBrain(&smartBrain);
+	std::cout << std::endl;
 	
 	Animal *animalHorde[6];
 	
@@ -36,7 +39,6 @@ int main( void ) {
 	animalHorde[4] = new Cat(*cat2);
 	animalHorde[5] = new Cat(*cat3);
 
-/*
 // We can check deep copy with this code ! 
 	dog1->setType("hihi");
 	std::cout << "dog1 type(origin): " << dog1->getType() << std::endl;
@@ -49,9 +51,11 @@ int main( void ) {
 	dog1->setBrain(&stupidBrain);
 	std::cout << "dog1's brain (origin): " << dog1->getBrain()->getIdea(42) << std::endl;
 	std::cout << "dog1's brain (group) : " << animalHorde[0]->getBrain()->getIdea(42) << std::endl;
-*/
 
 	std::cout << std::endl;
+
+	for (int i = 0; i < 6; i++)
+		animalHorde[i]->makeSound();
 
 	delete dog1;
 	delete dog2;
@@ -63,7 +67,7 @@ int main( void ) {
 	for (int i = 0; i < 6; i++)
 		delete animalHorde[i];
 
-	atexit(&leak);
+	// atexit(&leak);
 	return 0;
 
 }
