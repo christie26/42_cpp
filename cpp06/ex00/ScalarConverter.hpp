@@ -10,7 +10,8 @@ enum Type {
 	CHAR,
 	INT,
 	FLOAT,
-	DOUBLE
+	DOUBLE,
+	UNKNOWN
 };
 
 class ScalarConverter {

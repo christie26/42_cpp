@@ -1,7 +1,7 @@
 
 #include "ScalarConverter.hpp"
 
-// one character, printable 
+// one character, printable
 bool isChar ( std::string str ) {
 	if (str.length() == 1)
 		if (std::isprint(str[0]))
