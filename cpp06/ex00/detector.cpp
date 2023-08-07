@@ -56,7 +56,7 @@ float stringToFloat( const std::string& str ) {
             throw false;
         idx++;
     }
-    if (str[idx - 1] != 'f')
+    if (str[idx] != 'f')
         throw false;
     if (negative)
         result = -result;

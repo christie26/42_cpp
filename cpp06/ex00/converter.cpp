@@ -48,18 +48,23 @@ void	floatToOther( float floatValue ) {
 	intValue = static_cast<int>(floatValue);
 	doubleValue = static_cast<double>(floatValue);
 
-	if (floatValue < 0 || floatValue >= 128 || floatValue != floatValue)
+	if (floatValue < 0 || floatValue >= 128 || floatValue != floatValue) {
 		std::cout << "char  : impossible" << std::endl;
-	else if (doubleValue < 32 || doubleValue >= 127 || doubleValue != doubleValue)
+	}
+	else if (floatValue < 32 || floatValue >= 127)
 		std::cout << "char  : Non displayable" << std::endl;
 	else
 		std::cout << "char  : '" << charValue << "'" << std::endl;
+
+		
 	if (floatValue < std::numeric_limits<int>::lowest()
 		|| floatValue > std::numeric_limits<int>::max()
 		|| floatValue != floatValue)
 		std::cout << "int   : impossible" << std::endl;
 	else
 		std::cout << "int   : " << intValue << std::endl;
+
+
 	if (floatValue - static_cast<float>(intValue) == 0)
 	{
 		std::cout << "float : " << floatValue << ".0f" << std::endl;
@@ -84,16 +89,20 @@ void doubleToOther ( double doubleValue ) {
 
 	if (doubleValue < 0 || doubleValue >= 128 || doubleValue != doubleValue)
 		std::cout << "char  : impossible" << std::endl;
-	else if (doubleValue < 32 || doubleValue >= 127 || doubleValue != doubleValue)
+	else if (doubleValue < 32 || doubleValue >= 127)
 		std::cout << "char  : Non displayable" << std::endl;
 	else
 		std::cout << "char  : '" << charValue << "'" << std::endl;
+
+
 	if (doubleValue < std::numeric_limits<int>::lowest()
 		|| doubleValue > std::numeric_limits<int>::max()
 		|| doubleValue != doubleValue)
 		std::cout << "int   : impossible" << std::endl;
 	else
 		std::cout << "int   : " << intValue << std::endl;
+
+
 	if (doubleValue < std::numeric_limits<float>::lowest()
 		|| doubleValue > std::numeric_limits<float>::max())
 		std::cout << "float : impossible" << std::endl;
@@ -101,6 +110,8 @@ void doubleToOther ( double doubleValue ) {
 		std::cout << "float : " << floatValue << ".0f" << std::endl;
 	else
 		std::cout << "float : " << floatValue << "f" << std::endl;
+
+
 	if (doubleValue - static_cast<double>(intValue) == 0)
 		std::cout << "double: " << doubleValue << ".0" << std::endl;
 	else

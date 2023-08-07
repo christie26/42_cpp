@@ -31,7 +31,7 @@ void ScalarConverter::convert( const std::string& str ) {
 
 	int type = typeDetector(str);
 
-	std::cout << "type is " << type << std::endl;
+	// std::cout << "type is " << type << std::endl;
 
 	// if (type == INT)
 	// 	std::cout << "int is " << _intValue << std::endl;
