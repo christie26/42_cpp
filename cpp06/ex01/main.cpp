@@ -1,5 +1,6 @@
 
 #include "Serializer.hpp"
+#include "Data.hpp"
 
 int main ( void ) {
 
@@ -8,7 +9,7 @@ int main ( void ) {
 	uintptr_t intValue = Serializer::serialize(&myData);
 	Data* deserializedData = Serializer::deserialize(intValue);
 
-	std::cout << "Original data: " 
+	std::cout << "Original data    : " 
 		<< myData.intValue << ", " 
 		<< myData.doubleValue << ", "
 		<< myData.stringValue << std::endl;

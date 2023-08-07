@@ -16,7 +16,7 @@ void intToOther ( int intValue )
 	else if (intValue < 32 || intValue >= 127)
 		std::cout << "char  : Non displayable" << std::endl;
 	else
-		std::cout << "char  : " << charValue << "'" << std::endl;
+		std::cout << "char  : '" << charValue << "'" << std::endl;
 	std::cout << "int   : " << intValue << std::endl;
 	std::cout << "float : " << floatValue << ".0f" << std::endl;
 	std::cout << "double: " << doubleValue << ".0" << std::endl;
@@ -32,7 +32,7 @@ void charToOther( char charValue )
 	floatValue = static_cast<float>(charValue);
 	doubleValue = static_cast<double>(charValue);
 
-	std::cout << "char  : " << charValue << "'" << std::endl;
+	std::cout << "char  : '" << charValue << "'" << std::endl;
 	std::cout << "int   : " << intValue << std::endl;
 	std::cout << "float : " << floatValue << ".0f" << std::endl;
 	std::cout << "double: " << doubleValue << ".0" << std::endl;

@@ -18,12 +18,10 @@ enum Type {
 class ScalarConverter {
 
 private:
-
-
 	ScalarConverter ( void );
 	~ScalarConverter( void );
-	ScalarConverter (const ScalarConverter &scalar);
-	ScalarConverter& operator= (const ScalarConverter& scalar);
+	ScalarConverter ( const ScalarConverter& );
+	ScalarConverter& operator= ( const ScalarConverter& );
 
 	static int typeDetector( const std::string& str );
 	static int handlePseudo( const std::string& str);

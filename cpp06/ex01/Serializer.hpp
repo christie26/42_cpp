@@ -4,17 +4,18 @@
 
 #include <string>
 #include <iostream>
+#include "Data.hpp"
 
-struct Data {
-    int		intValue;
-    double	doubleValue;
-	std::string stringValue;
-};
 
 class Serializer {
 
-public:
+private:
+	Serializer ( void );
+	~Serializer( void );
+	Serializer ( const Serializer& );
+	Serializer& operator= ( const Serializer& );
 
+public:
 	static uintptr_t serialize( Data* ptr );
 	static Data* deserialize( uintptr_t raw );
 
