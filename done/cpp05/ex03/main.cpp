@@ -26,10 +26,13 @@ int main( void ) {
 
 	Form* formPtr = b.makeForm("robo", "hey");
 
-	Alice.signForm(*formPtr);
-	Alice.executeForm(*formPtr);
+	if (formPtr) {
+		Alice.signForm(*formPtr);
+		Alice.executeForm(*formPtr);
+		
+		delete formPtr;
+	}
 
-	delete formPtr;
 
 	// atexit(&leak);
 	
