@@ -14,9 +14,11 @@ int main( void ) {
 		Alice.increaseGrade();
 		Alice.increaseGrade();
 		Alice.increaseGrade();
+		std::cout << Alice << std::endl;
 	} catch ( std::exception &e ) {
 		std::cout << "Alice" << Red << e.what() << Reset << std::endl;
 	}
+	std::cout << std::endl;
 
 	try { 
 		Daniel = Bureaucrat("Daniel", 148);
@@ -28,18 +30,21 @@ int main( void ) {
 	} catch ( std::exception &e ) {
 		std::cout << "Daniel" << Red << e.what() << Reset << std::endl;
 	}
+	std::cout << std::endl;
 
 	try {
 		Bob = Bureaucrat("Bob", -1);
 	} catch ( std::exception &e ) {
 		std::cout << "Bob" << Red << e.what() << Reset << std::endl;
 	}
+	std::cout << std::endl;
 	
 	try { 
 		Chris = Bureaucrat("Chris", 170);
 	} catch ( std::exception &e ) {
 		std::cout << "Chris" << Red << e.what() << Reset << std::endl;
 	}
+	std::cout << std::endl;
 
 	return 0;
 }
