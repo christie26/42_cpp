@@ -1,11 +1,11 @@
 
 #include "PresidentialPardonForm.hpp"
 
-// PresidentialPardonForm::PresidentialPardonForm ( void )
-// {
-// 	std::cout	<< Green << "PresidentialPardonForm" << ", "
-// 				<< Reset << "Default constructor called" << std::endl;
-// }
+PresidentialPardonForm::PresidentialPardonForm ( void )
+{
+	std::cout	<< Green << "PresidentialPardonForm" << ", "
+				<< Reset << "Default constructor called" << std::endl;
+}
 
 PresidentialPardonForm::PresidentialPardonForm ( std::string target )
 : Form("president", 25, 5), _target ( target ) {

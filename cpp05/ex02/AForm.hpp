@@ -36,8 +36,9 @@ public:
     		const char* what() const throw();
 	};
 
+	Form ( void );
 	Form ( const std::string name, int signGrade, int executeGraded );
-	~Form( void );
+	virtual ~Form( void );
 	Form ( const Form &form );
 	Form& operator= ( const Form& form );
 

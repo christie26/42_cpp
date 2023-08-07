@@ -8,6 +8,7 @@
 void leak ( void ) {
 	system("leaks a.out");
 }
+
 int main( void ) {
 
 	PresidentialPardonForm John("John");

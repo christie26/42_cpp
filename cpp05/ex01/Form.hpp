@@ -31,6 +31,7 @@ public:
     		const char* what() const throw();
 	};
 
+	Form ( void );
 	Form ( const std::string name, const int signGrade, const int executeGraded );
 	~Form( void );
 	Form (const Form &form);

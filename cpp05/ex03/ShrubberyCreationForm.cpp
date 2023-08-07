@@ -66,7 +66,7 @@ void writeTree(const std::string& str, int depth, int length, std::ofstream& out
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 
 	if (!isSigned())
-		throw std::invalid_argument("the form is not signed");
+		throw UnSigned();
 	handleInvalidGrade(getSignGrade() - executor.getGrade() + 1);
 
 	std::string fileName = getTarget() + "_shrubbery";
@@ -75,4 +75,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 
 	writeTree(getTarget(), getTarget().length(), getTarget().length(), outFile);
     outFile.close();
+}
+
+ShrubberyCreationForm* ShrubberyCreationForm::create(std::string target) {
+	return new ShrubberyCreationForm(target);
 }

@@ -8,6 +8,9 @@
 Intern::Intern () {
 	std::cout	<< Green << "Intern" << ", "
 				<< Reset << "Default constructor called" << std::endl;
+	funcPtr[0] = &Intern::createPresident;
+    funcPtr[1] = &Intern::createRobo;
+    funcPtr[2] = &Intern::createShrubbery;
 }
 
 Intern::~Intern () {
@@ -26,20 +29,29 @@ Intern& Intern::operator= ( const Intern& ) {
 	return *this;
 }
 
-Form* Intern::makeForm( std::string nameForm, std::string targetForm ) {
+Form* Intern::makeForm(std::string nameForm, std::string targetForm) {
 
-	Form* formPtr = 0; 
+	std::string stringArray[3] = { "president", "robo", "shrubbery" };
 
-    if (nameForm == "president") {
-        formPtr = new PresidentialPardonForm(targetForm);
-    } else if (nameForm == "robo") {
-        formPtr = new RobotomyRequestForm(targetForm);
-    } else if (nameForm == "shrubbery") {
-        formPtr = new ShrubberyCreationForm(targetForm);
-    } else {
-        std::cout << "This name, " << nameForm << " doesn't exist." << std::endl;
-        return nullptr;
-	}
-	std::cout << "Intern creates " << nameForm << std::endl;
-	return formPtr;
+    for (int i = 0; i < 3; i++) {
+        if (nameForm == stringArray[i]) {
+            Form* formPtr = (this->*funcPtr[i])(targetForm);
+            std::cout << "Intern creates " << nameForm << std::endl;
+			return formPtr;
+        }
+    }
+    std::cout << "This name, " << nameForm << " doesn't exist." << std::endl;
+    return NULL;
+}
+
+Form* Intern::createPresident( std::string targetForm ) {
+	return (new PresidentialPardonForm(targetForm));
+}
+
+Form* Intern::createRobo( std::string targetForm ) {
+	return (new RobotomyRequestForm(targetForm));
+}
+
+Form* Intern::createShrubbery( std::string targetForm ) {
+	return (new ShrubberyCreationForm(targetForm));
 }

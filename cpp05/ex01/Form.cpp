@@ -1,6 +1,12 @@
 
 #include "Form.hpp"
 
+Form::Form ( void ) 
+: _name ( "default" ), _signed( false ), _signGrade(150), _executeGrade(150) {
+	std::cout	<< Green << "Form" << ", "
+				<< Reset << "Default constructor called" << std::endl;
+}
+
 Form::Form ( const std::string name, const int signGrade, const int executeGrade ) 
 : _name ( name ), _signed( false ), _signGrade(signGrade), _executeGrade(executeGrade) {
 	std::cout	<< Green << "Form" << ", "

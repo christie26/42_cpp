@@ -1,11 +1,11 @@
 
 #include "ShrubberyCreationForm.hpp"
 
-// ShrubberyCreationForm::ShrubberyCreationForm ( void )
-// {
-// 	std::cout	<< Green << "ShrubberyCreationForm" << ", "
-// 				<< Reset << "Default constructor called" << std::endl;
-// }
+ShrubberyCreationForm::ShrubberyCreationForm ( void )
+{
+	std::cout	<< Green << "ShrubberyCreationForm" << ", "
+				<< Reset << "Default constructor called" << std::endl;
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm ( std::string target )
 : Form("shrubbery", 147, 137), _target ( target ) {

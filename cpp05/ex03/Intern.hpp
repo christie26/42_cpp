@@ -5,6 +5,9 @@
 #include <iostream>
 #include <string>
 #include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 #define Red "\033[1;31m"
 #define Green "\033[1;32m"
@@ -16,6 +19,10 @@ class Intern {
 
 private:
 
+	Form* createPresident( std::string targetForm );
+	Form* createRobo( std::string targetForm );
+	Form* createShrubbery( std::string targetForm );
+
 public:
 
 	Intern ( void );
@@ -24,6 +31,8 @@ public:
 	Intern& operator= ( const Intern& intern );
 
 	Form* makeForm( std::string nameForm, std::string targetForm );
+
+	Form* (Intern::*funcPtr[3])(std::string);
 
 };
 

@@ -5,8 +5,11 @@
 #include <string>
 #include <iostream>
 #include <exception>
-
 #include "Bureaucrat.hpp"
+
+#define HIGHEXCEPTION "grade too high"
+#define LOWEXCEPTION "grade too low"
+#define UNSIGNED " is unsigned"
 
 class Bureaucrat;
 
@@ -15,14 +18,27 @@ class Form {
 private:
 	const std::string _name;
 	bool _signed;
-	int _signGrade;
-	int _executeGrade;
+	const int _signGrade;
+	const int _executeGrade;
 
 public:
+	
+	class GradeTooHighException : public std::exception {
+		public:
+    		const char* what() const throw();
+	};
+	class GradeTooLowException : public std::exception {
+		public:
+    		const char* what() const throw();
+	};
+	class UnSigned : public std::exception {
+		public:
+    		const char* what() const throw();
+	};
 
 	Form ( void );
 	Form ( const std::string name, int signGrade, int executeGraded );
-	~Form( void );
+	virtual ~Form( void );
 	Form ( const Form &form );
 	Form& operator= ( const Form& form );
 

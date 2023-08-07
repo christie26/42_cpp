@@ -6,12 +6,16 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Intern.hpp"
 
+void leak ( void ) {
+	system("leaks a.out");
+}
+
 int main( void ) {
 
 	Bureaucrat Alice;
 	Intern a;
 
-	try { 
+	try {
 		Alice = Bureaucrat("Alice", 30);
 		std::cout << Alice << std::endl;
 	} catch ( std::exception &e ) {
@@ -24,5 +28,9 @@ int main( void ) {
 	Alice.signForm(*formPtr);
 	Alice.executeForm(*formPtr);
 
+	delete formPtr;
+
+	// atexit(&leak);
+	
 	return 0;
 }

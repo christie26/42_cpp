@@ -1,11 +1,11 @@
 
 #include "RobotomyRequestForm.hpp"
 
-// RobotomyRequestForm::RobotomyRequestForm ( void )
-// {
-// 	std::cout	<< Green << "RobotomyRequestForm" << ", "
-// 				<< Reset << "Default constructor called" << std::endl;
-// }
+RobotomyRequestForm::RobotomyRequestForm ( void )
+{
+	std::cout	<< Green << "RobotomyRequestForm" << ", "
+				<< Reset << "Default constructor called" << std::endl;
+}
 
 RobotomyRequestForm::RobotomyRequestForm ( std::string target )
 : Form("robo", 72, 45), _target ( target ) {

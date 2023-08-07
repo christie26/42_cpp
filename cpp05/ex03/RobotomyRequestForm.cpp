@@ -41,13 +41,16 @@ std::string RobotomyRequestForm::getTarget( void ) const	{
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	
 	if (!isSigned())
-		throw std::invalid_argument("the form is not signed");
+		throw UnSigned();
 	
 	handleInvalidGrade(getSignGrade() - executor.getGrade() + 1);
 
 	std::cout << _target << " has been robotomized successfully 50\% of the time" << std::endl;
 }
 
+RobotomyRequestForm* RobotomyRequestForm::create(std::string target) {
+	return new RobotomyRequestForm(target);
+}
 /*
 RobotomyRequestForm: Required grades: sign 72, exec 45
 Makes some drilling noises. Then, informs that <target> has been robotomized

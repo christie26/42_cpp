@@ -11,7 +11,7 @@ private:
 	std::string _target;
 
 public:
-	// RobotomyRequestForm ( void );
+	RobotomyRequestForm ( void );
 	RobotomyRequestForm ( std::string target );
 	~RobotomyRequestForm( void );
 	RobotomyRequestForm ( const RobotomyRequestForm &form );

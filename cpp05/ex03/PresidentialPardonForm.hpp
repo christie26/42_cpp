@@ -20,6 +20,8 @@ public:
 	std::string getTarget( void ) const	;
 
 	void execute(Bureaucrat const & executor) const;
+
+	// static Form* create(std::string target);
 };
 
 #endif
