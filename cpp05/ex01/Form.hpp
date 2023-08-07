@@ -8,6 +8,9 @@
 
 #include "Bureaucrat.hpp"
 
+#define HIGHEXCEPTION "grade too high"
+#define LOWEXCEPTION "grade too low"
+
 class Bureaucrat;
 
 class Form {
@@ -15,13 +18,22 @@ class Form {
 private:
 	const std::string _name;
 	bool _signed;
-	int _signGrade;
-	int _executeGrade;
+	const int _signGrade;
+	const int _executeGrade;
 
 public:
 
-	Form ( void );
-	Form ( const std::string name, int signGrade, int executeGraded );
+	class GradeTooHighException : public std::exception {
+		public:
+    		const char* what() const throw();
+	};
+	class GradeTooLowException : public std::exception {
+		public:
+    		const char* what() const throw();
+	};
+
+
+	Form ( const std::string name, const int signGrade, const int executeGraded );
 	~Form( void );
 	Form (const Form &form);
 	Form& operator= (const Form& form);
@@ -30,8 +42,9 @@ public:
 	int getSignGrade( void ) const ;
 	int getExecuteGrade( void ) const ;
 
-	void handleInvalidGrade( int grade );
+	static void handleInvalidGrade( int grade );
 	void beSigned( Bureaucrat& bureaucrat );
+
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& form);

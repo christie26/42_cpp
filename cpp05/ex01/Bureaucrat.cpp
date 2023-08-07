@@ -36,6 +36,9 @@ Bureaucrat& Bureaucrat::operator= ( const Bureaucrat& bureaucrat ) {
 	return *this;
 }
 
+const char* Bureaucrat::GradeTooHighException::what() const throw () { return HIGHEXCEPTION; }
+const char* Bureaucrat::GradeTooLowException::what() const throw () { return LOWEXCEPTION; }
+
 std::string Bureaucrat::getName( void ) const {
 	return _name;
 }
@@ -58,9 +61,9 @@ void Bureaucrat::decreaseGrade() {
 
 void Bureaucrat::handleInvalidGrade( int grade ) {
     if (grade < 1)
-        throw std::invalid_argument(" grade too high");
+		throw GradeTooHighException();
     else if (grade > 150)
-        throw std::invalid_argument(" grade too low");
+		throw GradeTooLowException();
 }
 
 void Bureaucrat::signForm( Form& form ) {
@@ -71,7 +74,8 @@ void Bureaucrat::signForm( Form& form ) {
 	}
 
     catch (std::exception &e) {
-        std::cout << getName() << " couldn't sign " << form.getName() << " beacuase" << e.what() << std::endl;
+        std::cout << getName() << " couldn't sign " << form.getName() 
+			<< " beacuase bureau's " << Red << e.what() << Reset << std::endl;
         return ;
     }
 }

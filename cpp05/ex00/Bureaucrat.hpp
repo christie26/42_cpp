@@ -11,6 +11,8 @@
 #define Yellow "\033[1;33m"
 #define Blue "\033[1;34m"
 #define Reset "\033[1;0m"
+#define HIGHEXCEPTION "grade too high"
+#define LOWEXCEPTION "grade too low"
 
 class Bureaucrat {
 
@@ -19,6 +21,15 @@ private:
 	int _grade;
 
 public:
+
+	class GradeTooHighException : public std::exception {
+		public:
+    		const char* what() const throw();
+	};
+	class GradeTooLowException : public std::exception {
+		public:
+    		const char* what() const throw();
+	};
 
 	Bureaucrat ( void );
 	Bureaucrat ( const std::string name, int grade );
