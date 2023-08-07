@@ -1,11 +1,11 @@
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm ( void )
-{
-	std::cout	<< Green << "PresidentialPardonForm" << ", "
-				<< Reset << "Default constructor called" << std::endl;
-}
+// PresidentialPardonForm::PresidentialPardonForm ( void )
+// {
+// 	std::cout	<< Green << "PresidentialPardonForm" << ", "
+// 				<< Reset << "Default constructor called" << std::endl;
+// }
 
 PresidentialPardonForm::PresidentialPardonForm ( std::string target )
 : Form("president", 25, 5), _target ( target ) {
@@ -41,7 +41,7 @@ std::string PresidentialPardonForm::getTarget( void ) const	{
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 	
 	if (!isSigned())
-		throw std::invalid_argument("the form is not signed");
+		throw UnSigned();
 	
 	handleInvalidGrade(getSignGrade() - executor.getGrade() + 1);
 	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;

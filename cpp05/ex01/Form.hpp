@@ -5,7 +5,6 @@
 #include <string>
 #include <iostream>
 #include <exception>
-
 #include "Bureaucrat.hpp"
 
 #define HIGHEXCEPTION "grade too high"
@@ -31,7 +30,6 @@ public:
 		public:
     		const char* what() const throw();
 	};
-
 
 	Form ( const std::string name, const int signGrade, const int executeGraded );
 	~Form( void );

@@ -1,11 +1,11 @@
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm ( void )
-{
-	std::cout	<< Green << "RobotomyRequestForm" << ", "
-				<< Reset << "Default constructor called" << std::endl;
-}
+// RobotomyRequestForm::RobotomyRequestForm ( void )
+// {
+// 	std::cout	<< Green << "RobotomyRequestForm" << ", "
+// 				<< Reset << "Default constructor called" << std::endl;
+// }
 
 RobotomyRequestForm::RobotomyRequestForm ( std::string target )
 : Form("robo", 72, 45), _target ( target ) {
@@ -41,7 +41,7 @@ std::string RobotomyRequestForm::getTarget( void ) const	{
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	
 	if (!isSigned())
-		throw std::invalid_argument("the form is not signed");
+		throw UnSigned();
 	
 	handleInvalidGrade(getSignGrade() - executor.getGrade() + 1);
 

@@ -2,6 +2,10 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+void leak ( void ) {
+	system("leaks a.out");
+}
+
 int main( void ) {
 
 	Form* pipex;
@@ -44,5 +48,6 @@ int main( void ) {
 		Alice.signForm(*webserv);
 		delete webserv;
 	}
+	// atexit(&leak);
 	return 0;
 }

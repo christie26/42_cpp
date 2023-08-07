@@ -1,11 +1,11 @@
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm ( void )
-{
-	std::cout	<< Green << "ShrubberyCreationForm" << ", "
-				<< Reset << "Default constructor called" << std::endl;
-}
+// ShrubberyCreationForm::ShrubberyCreationForm ( void )
+// {
+// 	std::cout	<< Green << "ShrubberyCreationForm" << ", "
+// 				<< Reset << "Default constructor called" << std::endl;
+// }
 
 ShrubberyCreationForm::ShrubberyCreationForm ( std::string target )
 : Form("shrubbery", 147, 137), _target ( target ) {
@@ -66,7 +66,7 @@ void writeTree(const std::string& str, int depth, int length, std::ofstream& out
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 
 	if (!isSigned())
-		throw std::invalid_argument("the form is not signed");
+		throw UnSigned();
 	handleInvalidGrade(getSignGrade() - executor.getGrade() + 1);
 
 	std::string fileName = getTarget() + "_shrubbery";

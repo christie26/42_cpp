@@ -5,23 +5,23 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+void leak ( void ) {
+	system("leaks a.out");
+}
 int main( void ) {
 
-	PresidentialPardonForm John;
-	ShrubberyCreationForm Thoma;
-	RobotomyRequestForm Eti;
+	PresidentialPardonForm John("John");
+	PresidentialPardonForm Iann(John); // to check copy constructor
+
+	ShrubberyCreationForm Thoma("Thoma");
+
+	RobotomyRequestForm Eti("Eti");
 	Bureaucrat Alice;
 	Bureaucrat Bob;
 
-	John = PresidentialPardonForm("John");
 	std::cout << John << std::endl;
-	PresidentialPardonForm Iann(John); // to check copy constructor
-	std::cout << Iann << std::endl;
-	
-	Thoma = ShrubberyCreationForm("thoma");
+	std::cout << Iann << std::endl;	
 	std::cout << Thoma << std::endl;
-
-	Eti = RobotomyRequestForm("eti");
 	std::cout << Eti << std::endl;
 
 	try { 
@@ -45,8 +45,10 @@ int main( void ) {
 	Bob.signForm(Eti);
 
 	Alice.executeForm(Thoma);
+	Alice.executeForm(John);
 	Bob.executeForm(John);
 	Bob.executeForm(Eti);
 
+	// atexit(&leak);
 	return 0;
 }
