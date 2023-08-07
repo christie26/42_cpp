@@ -1,10 +1,12 @@
 NAME		=	a.out
 
-SRCS		= 	main.cpp
+SRCS		= 	main.cpp \
+				Base.cpp A.cpp B.cpp C.cpp \
+				cpp_functions.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror
 
 all:		${NAME}
 
