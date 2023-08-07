@@ -14,6 +14,7 @@ int main( void ) {
 
 	Bureaucrat Alice;
 	Intern a;
+	Intern b(a);
 
 	try {
 		Alice = Bureaucrat("Alice", 30);
@@ -23,7 +24,7 @@ int main( void ) {
 	}
 	std::cout << std::endl;
 
-	Form* formPtr = a.makeForm("robo", "hey");
+	Form* formPtr = b.makeForm("robo", "hey");
 
 	Alice.signForm(*formPtr);
 	Alice.executeForm(*formPtr);

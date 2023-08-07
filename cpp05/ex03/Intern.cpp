@@ -21,11 +21,17 @@ Intern::~Intern () {
 Intern::Intern ( const Intern& ) {
 	std::cout	<< Yellow << "Intern" << ", "
 				<< Reset << "Copy constructor called" << std::endl;
+	funcPtr[0] = &Intern::createPresident;
+    funcPtr[1] = &Intern::createRobo;
+    funcPtr[2] = &Intern::createShrubbery;
 }
 
 Intern& Intern::operator= ( const Intern& ) {
 	std::cout	<< Yellow << "Intern" << ", "
 				<< Reset << "Copy assignment operator called" << std::endl;
+	funcPtr[0] = &Intern::createPresident;
+    funcPtr[1] = &Intern::createRobo;
+    funcPtr[2] = &Intern::createShrubbery;
 	return *this;
 }
 
