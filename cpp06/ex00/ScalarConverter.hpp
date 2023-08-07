@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <cctype>
-
+#include <limits>
 
 enum Type {
 	CHAR,
@@ -19,23 +19,22 @@ class ScalarConverter {
 
 private:
 
-	static int		_intValue;
-	static char		_charValue;
-	static float	_floatValue;
-	static double	_doubleValue;
 
 	ScalarConverter ( void );
 	~ScalarConverter( void );
 	ScalarConverter (const ScalarConverter &scalar);
 	ScalarConverter& operator= (const ScalarConverter& scalar);
 
-	static int getType( std::string str );
-	// bool isChar ( std::string str );
-	// bool isInt ( std::string str );
-	// bool isFloat ( std::string str );
-	// bool isDouble ( std::string str );
+	static int typeDetector( const std::string& str );
+	static int handlePseudo( const std::string& str);
+	static void convertEachType ( int type );
 
 public:
+	static int		_intValue;
+	static char		_charValue;
+	static float	_floatValue;
+	static double	_doubleValue;
+
 	static void convert ( const std::string& str );
 };
 

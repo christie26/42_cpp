@@ -1,7 +1,7 @@
 NAME		=	convert
 
 SRCS		= 	main.cpp ScalarConverter.cpp \
-				typeChecker.cpp
+				detector.cpp converter.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 

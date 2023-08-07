@@ -1,6 +1,12 @@
 
 #include "ScalarConverter.hpp"
 
+// lazy initialization
+int ScalarConverter::_intValue;
+char ScalarConverter::_charValue;
+float ScalarConverter::_floatValue;
+double ScalarConverter::_doubleValue;
+
 ScalarConverter::ScalarConverter () {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -20,17 +26,22 @@ ScalarConverter& ScalarConverter::operator= ( const ScalarConverter& ) {
 }
 
 /*----------------------------------------------------*/
-// int		intValue;
-// char	charValue;
-// float	floatValue;
-// double	doubleValue;
 
 void ScalarConverter::convert( const std::string& str ) {
 
-	int type = getType(str);
+	int type = typeDetector(str);
 
-	(void)(type);
+	std::cout << "type is " << type << std::endl;
+
 	// if (type == INT)
-		// intCenter(str);
+	// 	std::cout << "int is " << _intValue << std::endl;
+	// if (type == CHAR)
+	// 	std::cout << "char is " << _charValue << std::endl;
+	// if (type == FLOAT)
+	// 	std::cout << "float is " << _floatValue << std::endl;
+	// if (type == DOUBLE)
+	// 	std::cout << "double is " << _doubleValue << std::endl;
+
+	convertEachType(type);	
 	
 }
