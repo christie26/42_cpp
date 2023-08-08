@@ -1,5 +1,4 @@
 
-// .tpp : the source file contains implementations of templated methods
 #ifndef ARRAY_TPP
 #define ARRAY_TPP
 
