@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Data.hpp"
 
+typedef unsigned long uintptr_t;
 
 class Serializer {
 
