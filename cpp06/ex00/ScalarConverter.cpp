@@ -25,7 +25,7 @@ ScalarConverter& ScalarConverter::operator= ( const ScalarConverter& ) {
 	return *this;
 }
 
-/*----------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
 
 void ScalarConverter::convert( const std::string& str ) {
 
@@ -42,6 +42,6 @@ void ScalarConverter::convert( const std::string& str ) {
 	// if (type == DOUBLE)
 	// 	std::cout << "double is " << _doubleValue << std::endl;
 
-	convertEachType(type);	
+	typeConverter(type);	
 	
 }

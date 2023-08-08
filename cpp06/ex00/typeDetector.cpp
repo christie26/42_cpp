@@ -111,10 +111,8 @@ int ScalarConverter::handlePseudo( const std::string& str ) {
 			_floatValue = -std::numeric_limits<float>::infinity();
 		if (str == "+inff" || str == "inff")
 			_floatValue = std::numeric_limits<float>::infinity();
-		if (str == "-inff")
-			_floatValue = -std::numeric_limits<float>::infinity();
 		if (str == "nanf")
-			_floatValue = -std::numeric_limits<float>::quiet_NaN();
+			_floatValue = std::numeric_limits<float>::quiet_NaN();
 	}
 
 	if (str == "inf" || str == "+inf" || str == "-inf" || str == "nan") {
@@ -123,10 +121,8 @@ int ScalarConverter::handlePseudo( const std::string& str ) {
 			_doubleValue = -std::numeric_limits<double>::infinity();
 		if (str == "+inf" || str == "inf")
 			_doubleValue = std::numeric_limits<double>::infinity();
-		if (str == "-inf")
-			_doubleValue = -std::numeric_limits<double>::infinity();
 		if (str == "nan")
-			_doubleValue = -std::numeric_limits<double>::quiet_NaN();
+			_doubleValue = std::numeric_limits<double>::quiet_NaN();
 	}
 	return type;
 }

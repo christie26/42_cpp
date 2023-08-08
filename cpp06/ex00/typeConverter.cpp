@@ -57,7 +57,7 @@ void	floatToOther( float floatValue ) {
 		std::cout << "char  : '" << charValue << "'" << std::endl;
 
 		
-	if (floatValue < std::numeric_limits<int>::lowest()
+	if (floatValue < std::numeric_limits<int>::min()
 		|| floatValue > std::numeric_limits<int>::max()
 		|| floatValue != floatValue)
 		std::cout << "int   : impossible" << std::endl;
@@ -95,7 +95,7 @@ void doubleToOther ( double doubleValue ) {
 		std::cout << "char  : '" << charValue << "'" << std::endl;
 
 
-	if (doubleValue < std::numeric_limits<int>::lowest()
+	if (doubleValue < std::numeric_limits<int>::min()
 		|| doubleValue > std::numeric_limits<int>::max()
 		|| doubleValue != doubleValue)
 		std::cout << "int   : impossible" << std::endl;
@@ -103,7 +103,7 @@ void doubleToOther ( double doubleValue ) {
 		std::cout << "int   : " << intValue << std::endl;
 
 
-	if (doubleValue < std::numeric_limits<float>::lowest()
+	if (doubleValue < std::numeric_limits<float>::min()
 		|| doubleValue > std::numeric_limits<float>::max())
 		std::cout << "float : impossible" << std::endl;
 	else if (doubleValue - static_cast<double>(intValue) == 0)
@@ -118,7 +118,7 @@ void doubleToOther ( double doubleValue ) {
 		std::cout << "double: " << doubleValue << std::endl;
 }
 
-void ScalarConverter::convertEachType( int type ) {
+void ScalarConverter::typeConverter( int type ) {
 
 	if (type == INT)
 		intToOther(_intValue);

@@ -23,9 +23,9 @@ private:
 	ScalarConverter ( const ScalarConverter& );
 	ScalarConverter& operator= ( const ScalarConverter& );
 
-	static int typeDetector( const std::string& str );
 	static int handlePseudo( const std::string& str);
-	static void convertEachType ( int type );
+	static int typeDetector( const std::string& str );
+	static void typeConverter ( int type );
 
 public:
 	static int		_intValue;
