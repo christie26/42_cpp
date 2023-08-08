@@ -4,18 +4,24 @@
 
 template <typename T>
 class Array {
+
 private:
-    T* data;
-    size_t size;
+	T* data;
+	unsigned int arraySize;
 
 public:
-    Array(size_t initialSize);
-    ~Array();
+	Array ();
+	Array ( unsigned int n );
+	Array ( const Array& array );
+	Array<T>& operator= ( const Array& array );
+	~Array ();
 
-    void insert(size_t index, const T& value);
-    T& get(size_t index);
+	T& operator[]( size_t index );
+	const T& operator[]( size_t index ) const;
+
+	size_t size ( void ) const;
 };
 
-#include "array.tpp"  // Include the template definitions
+#include "Array.tpp" 
 
 #endif // ARRAY_HPP

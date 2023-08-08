@@ -1,36 +1,36 @@
 
-#include "Array.hpp"
 #include <iostream>
 #include <string>
 
-/*
-template <typename T>
-void printElement( T e ) {
-	std::cout << e << std::endl;
-}
+#include "Array.hpp"
 
-template <typename T>
-void doubleElement( T e ) {
-	e  = e + e;
-}
-*/
+int main( void )
+{
+    
+	Array<std::string> stringArray(10);
 
-int main( void ) {
+	stringArray[0] = "happy";
+	stringArray[1] = "paris";
+	stringArray[2] = "2023";
 
-/*
-	int intArray[5] = {0, 1, 2, 3, 4};
-	std::string stringArray[5] = {"happy", "yeah", "how are you ?", "42", "seoul"};
-
-	// iter(stringArray, sizeof(stringArray) / sizeof(stringArray[0]), &doubleElement);
-	iter(stringArray, sizeof(stringArray) / sizeof(stringArray[0]), &printElement);
+	std::cout << "stringArray[0]: " << stringArray[0] << std::endl;
+	std::cout << "stringArray[1]: " << stringArray[1] << std::endl;
+	std::cout << "stringArray[2]: " << stringArray[2] << std::endl;
 	std::cout << std::endl;
+
+	Array<std::string> copy1(stringArray);
+
+	std::cout << "copy1[0]: " << copy1[0] << std::endl;
+	std::cout << "copy1[1]: " << copy1[1] << std::endl;
+	std::cout << "copy1[2]: " << copy1[2] << std::endl;
+	std::cout << std::endl;
+    
+	Array<std::string> copy2;
+	copy2 = stringArray;
+
+	std::cout << "copy2[0]: " << copy2[0] << std::endl;
+	std::cout << "copy2[1]: " << copy2[1] << std::endl;
+	std::cout << "copy2[2]: " << copy2[2] << std::endl;
 	
-	iter(intArray, sizeof(intArray) / sizeof(intArray[0]), &printElement);
-	std::cout << std::endl;
-
-	iter(intArray, sizeof(intArray) / sizeof(intArray[0]), &doubleElement);
-	iter(intArray, sizeof(intArray) / sizeof(intArray[0]), &printElement);
-*/	
-
 	return 0;
 }
