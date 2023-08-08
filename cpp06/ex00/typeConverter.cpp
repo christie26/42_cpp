@@ -64,8 +64,7 @@ void	floatToOther( float floatValue ) {
 	else
 		std::cout << "int   : " << intValue << std::endl;
 
-
-	if (floatValue - static_cast<float>(intValue) == 0)
+	if (floatValue - static_cast<float>(intValue) == 0) // to check integer part
 	{
 		std::cout << "float : " << floatValue << ".0f" << std::endl;
 		std::cout << "double: " << doubleValue << ".0" << std::endl;
@@ -106,7 +105,7 @@ void doubleToOther ( double doubleValue ) {
 	if (doubleValue < std::numeric_limits<float>::min()
 		|| doubleValue > std::numeric_limits<float>::max())
 		std::cout << "float : impossible" << std::endl;
-	else if (doubleValue - static_cast<double>(intValue) == 0)
+	else if (doubleValue - static_cast<double>(intValue) == 0) // to check integer part
 		std::cout << "float : " << floatValue << ".0f" << std::endl;
 	else
 		std::cout << "float : " << floatValue << "f" << std::endl;
