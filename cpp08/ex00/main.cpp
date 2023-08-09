@@ -8,8 +8,6 @@
 
 #include "easyfind.hpp"
 
-
-
 int main( void )
 {
 	/* set various containers */
@@ -29,14 +27,26 @@ int main( void )
 	intList.push_back(11);
 
 	/* set target value */
-	int targetValue = 11;
+	int targetValue = 111;
 
 	// /* test my easyfind */
 	try {
-		std::cout << "result: " << easyfind(intArray, targetValue) << std::endl;
-		std::cout << "result: " << easyfind(intVector, targetValue) << std::endl;
-		std::cout << "result: " << easyfind(intDeque, targetValue) << std::endl;
-		std::cout << "result: " << easyfind(intList, targetValue) << std::endl;
+		std::cout << "we find it from index: " << easyfind(intArray, targetValue) << std::endl;
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+	try {
+		std::cout << "we find it from index: " << easyfind(intVector, targetValue) << std::endl;
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+	try {
+		std::cout << "we find it from index: " << easyfind(intDeque, targetValue) << std::endl;
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+	try {
+		std::cout << "we find it from index: " << easyfind(intList, targetValue) << std::endl;
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
