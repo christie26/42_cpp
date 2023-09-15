@@ -1,6 +1,7 @@
 
 #include "Span.hpp"
 #include <iostream>
+#include <algorithm>
 
 Span::Span ( unsigned int N )
 :N ( N ) {
@@ -26,14 +27,10 @@ Span& Span::operator= ( const Span& span ) {
 }
 
 void Span::addNumber ( int n ) {
-	try {
-		if (numbers.size() == N)
-			throw std::invalid_argument("Span class alreay have N integers");
-		numbers.push_back(n);
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
+
+	if (numbers.size() == N)
+		throw std::invalid_argument("Span class alreay have N integers");
+	numbers.push_back(n);
 }
 
 void Span::sortVector( void ) {
