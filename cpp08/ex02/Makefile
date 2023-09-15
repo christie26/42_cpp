@@ -5,6 +5,9 @@ SRCS		= 	main.cpp
 OBJS		:= $(SRCS:%.cpp=%.o)
 
 CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror
+ifdef DEBUG
+	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+endif
 
 all:		${NAME}
 
@@ -21,4 +24,6 @@ fclean:		clean
 re:			
 			make fclean
 			make all
-.PHONY:		all clean fclean re
+debug:		fclean
+			make DEBUG=1 -j
+.PHONY:		all clean fclean re debug
