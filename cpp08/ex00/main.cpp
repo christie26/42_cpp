@@ -5,17 +5,16 @@
 #include <vector>
 #include <deque>
 #include <list>
+#include <algorithm>
 
 #include "easyfind.hpp"
 
 int main( void )
 {
 	/* set various containers */
-	std::array<int, 6> intArray = {11, 12, 13, 14, 15, 11};
 	std::vector<int> intVector;
 	std::deque<int> intDeque;
 	std::list<int> intList;
-
 
     for (int i = 11; i < 16; i++) {
         intVector.push_back(i);
@@ -27,28 +26,27 @@ int main( void )
 	intList.push_back(11);
 
 	/* set target value */
-	int targetValue = 111;
+	int targetValue = 12;
 
-	// /* test my easyfind */
-	try {
-		std::cout << "we find it from index: " << easyfind(intArray, targetValue) << std::endl;
-	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+	/* test my easyfind */
+	std::vector<int>::const_iterator itV = easyfind(intVector, targetValue);
+	std::deque<int>::const_iterator itD = easyfind(intDeque, targetValue);
+	std::list<int>::const_iterator itL = easyfind(intList, targetValue);
+	
+	if (itV != intVector.end()) {
+		std::cout << "We found " << *itV << " in " << std::distance(intVector.cbegin(), itV) << "th." << std::endl;
+	} else {
+		std::cout << "We can't find it." << std::endl;
 	}
-	try {
-		std::cout << "we find it from index: " << easyfind(intVector, targetValue) << std::endl;
-	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+	if (itD != intDeque.end()) {
+		std::cout << "We found " << *itD << " in " << std::distance(intDeque.cbegin(), itD) << "th." << std::endl;
+	} else {
+		std::cout << "We can't find it." << std::endl;
 	}
-	try {
-		std::cout << "we find it from index: " << easyfind(intDeque, targetValue) << std::endl;
-	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
-	}
-	try {
-		std::cout << "we find it from index: " << easyfind(intList, targetValue) << std::endl;
-	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+	if (itL != intList.end()) {
+		std::cout << "We found " << *itL << " in " << std::distance(intList.cbegin(), itL) << "th." << std::endl;
+	} else {
+		std::cout << "We can't find it." << std::endl;
 	}
 
 	return 0;

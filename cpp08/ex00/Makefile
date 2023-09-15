@@ -1,6 +1,6 @@
 NAME		=	a.out
 
-SRCS		= 	main.cpp easyfind.cpp
+SRCS		= 	main.cpp #easyfind.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
