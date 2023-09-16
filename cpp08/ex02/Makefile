@@ -9,6 +9,10 @@ ifdef DEBUG
 	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 endif
 
+ifdef LOG
+	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -DLOG=1
+endif
+
 all:		${NAME}
 
 .cpp.o:
@@ -26,4 +30,6 @@ re:
 			make all
 debug:		fclean
 			make DEBUG=1 -j
-.PHONY:		all clean fclean re debug
+log:
+			make LOG=1
+.PHONY:		all clean fclean re debug log
