@@ -1,10 +1,10 @@
-NAME		= a.out
+NAME		= btc
 
-SRCS		= main.cpp
+SRCS		= main.cpp Parser.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g
 
 all:		${NAME}
 

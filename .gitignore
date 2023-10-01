@@ -1,9 +1,9 @@
 **/.DS_Store
 **/*.o
-.vscode/settings.json
 cpp00/ex01/phonebook
 # cpp00/ex02/19920104_091532.log
 cpp01/ex03/weapon
 cpp01/ex04/sed
 **/a.out
 **/.vscode
+cpp09/ex00/btc
