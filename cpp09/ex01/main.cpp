@@ -9,7 +9,5 @@ int main(int ac, char** av) {
 		str += av[i];
 		str += " ";
 	}
-
-	std::cout << "str: " << str << "." << std::endl;
 	RPN rpn(str);
 }
