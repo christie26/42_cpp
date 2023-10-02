@@ -1,37 +1,35 @@
 
-#include "Parser.hpp"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include "Parser.hpp"
+#include "Date.hpp"
 
-Parser::Parser() {
+Parser::Parser() 
+: _fs("/Users/yoonseo/project/circle4/cpp/cpp09/ex00/data.csv"){
 
-	_fs.open("/Users/yoonseo/project/circle4/cpp/cpp09/ex00/data.csv");
-	// _fs.open("./data.csv");
 	if (!_fs.is_open()) {
-		throw std::out_of_range("Error: data.csv: could not open file.");
+		throw std::out_of_range("data.csv: could not open file.");
 	}
-
-	std::string first_line;
-	std::getline(_fs, first_line);
-	std::cout << "first_line: " << first_line << std::endl;
-	if (first_line != "date,exchange_rate") {
-		throw std::out_of_range("Error: data.cvs: file error.");
-	}
+    
+    parseFirstLine();
 	parseLine();
 }
-
 Parser::~Parser() {}
-
-Parser::Parser (const Parser& copy) {
-	// this->_data = copy._data;
-	(void)(copy);
+Parser::Parser (const Parser& copy) : _datas(copy._datas) {}
+Parser& Parser::operator= (const Parser& copy) {
+	if (this != &copy) {
+		this->_datas = copy._datas;
+	}
+	return *this;
 }
 
-Parser& Parser::operator= (const Parser& copy) {
-	// this->_data = copy._data;
-	(void)(copy);
-	return *this;
+void Parser::parseFirstLine() {
+	std::string first_line;
+	std::getline(_fs, first_line);
+	if (first_line != "date,exchange_rate") {
+		throw std::out_of_range("data.cvs: first line error.");
+	}
 }
 
 void Parser::parseLine() {
@@ -42,40 +40,32 @@ void Parser::parseLine() {
         if (!_fs) {
             break;
         }
-        
         parseData(line);
     }
 }
 
-void Parser::parseData(std::string line) {
-    data new_data;
-    std::istringstream ss(line);
+void Parser::parseData(const std::string& line) {
+    size_t pos = line.find(',');
+    Date new_date(line.substr(0, pos));
 
-    char dash;
-    ss >> new_data.year >> dash;
-    if (ss.fail() || dash != '-') {
-        throw std::out_of_range("Error: data.csv: format error.");
-    }
+    float ratio = stringToFloat(line.substr(pos + 1, line.length()));
 
-	ss >> new_data.month >> dash;
-    if (ss.fail() || dash != '-') {
-        throw std::out_of_range("Error: data.csv: format error.");
-    }
+    _datas.insert(std::make_pair(new_date, ratio));
 
-	ss >> new_data.day >> dash;
-    if (ss.fail() || dash != ',') {
-        throw std::out_of_range("Error: data.csv: format error.");
-    }
-
-	ss >> new_data.ratio;
-    if (ss.fail() || ss.get() != EOF) {
-        throw std::out_of_range("Error: data.csv: format error.");
-    }
-	_datas.push_back(new_data);
 }
 
-/* example of 'data.cvs | head'
-date,exchange_rate
-2009-01-02,0
-2009-01-05,0
-*/
+float Parser::stringToFloat(const std::string& str) {
+    std::istringstream iss(str);
+    float result;
+    iss >> std::noskipws >> result;
+
+    if (iss.eof() && !iss.fail()) {
+        return result;
+    } else {
+        throw std::invalid_argument("data.csv: invalid float format.");
+    }
+}
+
+std::map<Date, float> Parser::getDatas () const {
+    return _datas;
+}
