@@ -24,5 +24,6 @@ private:
 	void printBefore();
 	void msDeque(std::deque<int>&);
 	void sortPair(std::deque<std::pair<itD, itD> >&);
-
+	// void insertElement(itD startIndex, itD endIndex, int element);
+	void insertElement(std::deque<int>& arr, int startIndex, int endIndex, int element);
 };

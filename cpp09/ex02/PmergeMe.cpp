@@ -63,20 +63,43 @@ void PmergeMe::msDeque(std::deque<int>& _deque) {
 		pairs.push_back(new_pair);
 	}
 	
-	sortPair(pairs);
-
-
-
+	insertElement(_deque, 0, _deque.size(), 7);
 	
+	sortPair(pairs);
+	
+	printBefore();
 }
 
-void insertElement(itD startIndex, itD endIndex, int element) {
+int binarySearch(const std::deque<int>& arr, int left, int right, int element) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
 
-	// binary search
+        if (arr[mid] == element) {
+            return mid; // Element already exists, return its index
+        }
+        if (arr[mid] < element) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return left;
+}
+
+void PmergeMe::insertElement(std::deque<int>& arr, int startIndex, int endIndex, int element) {
+	int insertPos = binarySearch(arr, startIndex, endIndex, element);
+
+	while (endIndex >= insertPos) {
+		arr[endIndex + 1] = arr[endIndex];
+		endIndex--;
+	}
+	arr[insertPos] = element;
 }
 
 void PmergeMe::sortPair(std::deque<std::pair<itD, itD> >& pairs) {
-
+    if (pairs.size() <= 1) {
+        return; // Termination condition: nothing to sort
+    }
 	std::deque<std::pair<itD, itD> > new_pairs;
 
 	std::deque<std::pair<itD, itD> >::iterator it;
@@ -91,7 +114,7 @@ void PmergeMe::sortPair(std::deque<std::pair<itD, itD> >& pairs) {
 	
 	// make main chain
 	std::deque<int> main_chain;
-	std::deque<std::pair<itD, itD> >::iterator it;
+	// std::deque<std::pair<itD, itD> >::iterator it;
 	for (it = new_pairs.begin(); it != new_pairs.end(); it++) {
 		main_chain.push_back(*it->first);
 	}
@@ -101,9 +124,7 @@ void PmergeMe::sortPair(std::deque<std::pair<itD, itD> >& pairs) {
 
 	// put y3, y2
 	for (size_t i = 3; i > 1; i++) {
-		insertElement(main_chain.begin(), main_chain.begin() + 2, *new_pairs[i - 1].second);
+		insertElement(main_chain, 0, 0 + 2, *new_pairs[i - 1].second);
 	}
-
-
 
 }
