@@ -7,6 +7,7 @@
 #include <string>
 #include <algorithm>
 
+typedef std::deque<int>::iterator itD;
 class PmergeMe {
 public:
 	PmergeMe(const std::string&);
@@ -15,10 +16,13 @@ private:
 	PmergeMe(const PmergeMe&);
 	PmergeMe& operator=(const PmergeMe&);
 private:
-	std::deque<int> _deque;
-	std::vector<int> _vector;
+	std::deque<int>		_deque;
+	std::vector<int>	_vector;
+	unsigned int		_size;
 private:
-	void fillContainer(const std::string& str);
-	void printBefore() const;
+	void fillContainer(const std::string&);
+	void printBefore();
+	void msDeque(std::deque<int>&);
+	void sortPair(std::deque<std::pair<itD, itD> >&);
 
 };
