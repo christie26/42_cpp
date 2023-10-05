@@ -4,6 +4,8 @@
 #include <exception>
 #include <iostream>
 #include <utility>
+#include <cmath>
+#include <algorithm>
 
 PmergeMe::PmergeMe(const std::string& str) : _size(0) {
 	try {
@@ -13,11 +15,7 @@ PmergeMe::PmergeMe(const std::string& str) : _size(0) {
 		return ;
 	}
 	printBefore();
-	// std::deque<int> sortedDeque = msDeque(_deque, _size);
-	msDeque(_deque);
-
-	// sort for deque
-	// sort for vector
+	msVector(_vector);
 
 }
 PmergeMe::~PmergeMe() {}
@@ -35,96 +33,105 @@ void PmergeMe::fillContainer(const std::string& str) {
 		if(ss.fail() || num <= 0) {
 			throw std::invalid_argument("Error.");
 		}
-		_deque.push_back(num);
 		_vector.push_back(num);
+		// _vector.push_back(num);
 		_size++;
 	}
 }
 
 void PmergeMe::printBefore() {
 
-	std::deque<int>::iterator it;
+	std::vector<int>::iterator it;
 	std::cout << "Before:";
 
-	for (it = _deque.begin(); it != _deque.end(); it++) {
+	for (it = _vector.begin(); it != _vector.end(); it++) {
 		std::cout << " " << *it;
 	}
 	std::cout << std::endl;
 }
 
-void PmergeMe::msDeque(std::deque<int>& _deque) {
+void PmergeMe::msVector(std::vector<int>& _vector) {
 	
-	std::deque<std::pair<itD, itD> > pairs;
+	std::vector<std::pair<itV, itV> > pairs;
 
-	for (itD it = _deque.begin(); it < _deque.end() - 1; it += 2) {
-		std::pair<itD, itD> new_pair;
+	for (itV it = _vector.begin(); it < _vector.end() - 1; it += 2) {
+		std::pair<itV, itV> new_pair;
 		new_pair.first = *it > *(it+1) ? it : (it+1);
 		new_pair.second = *it <= *(it+1) ? it : (it+1);
 		pairs.push_back(new_pair);
 	}
-	
-	insertElement(_deque, 0, _deque.size(), 7);
 	
 	sortPair(pairs);
 	
 	printBefore();
 }
 
-int binarySearch(const std::deque<int>& arr, int left, int right, int element) {
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
+void PmergeMe::insertElement(it_pairV& main_chain, it_pair_itV startIt, it_pair_itV endIt, itV& element, it_pairV& pairs) {
+	if (endIt >= main_chain.end())
+		endIt = main_chain.end() - 1;
 
-        if (arr[mid] == element) {
-            return mid; // Element already exists, return its index
-        }
-        if (arr[mid] < element) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-    return left;
+	it_pair_itV insertPos = std::lower_bound(startIt, endIt, element, CustomCompare);
+
+	main_chain.insert(insertPos, *findMatchPair(pairs, element));
 }
 
-void PmergeMe::insertElement(std::deque<int>& arr, int startIndex, int endIndex, int element) {
-	int insertPos = binarySearch(arr, startIndex, endIndex, element);
+it_pair_itV PmergeMe::findMatchPair(it_pairV& pairs, itV targetPair) {
 
-	while (endIndex >= insertPos) {
-		arr[endIndex + 1] = arr[endIndex];
-		endIndex--;
+	it_pair_itV it = pairs.begin();
+	while (it != pairs.end() && it->first != targetPair) {
+		it++;
 	}
-	arr[insertPos] = element;
+	return it;
 }
 
-void PmergeMe::sortPair(std::deque<std::pair<itD, itD> >& pairs) {
-    if (pairs.size() <= 1) {
-        return; // Termination condition: nothing to sort
+size_t getJ(int n) {
+	if (n % 2) {
+        return (std::pow(2, n) + 1) / 3.0;
+    } else {
+        return (std::pow(2, n) - 1) / 3.0;
     }
-	std::deque<std::pair<itD, itD> > new_pairs;
+}
 
-	std::deque<std::pair<itD, itD> >::iterator it;
-	for (it = pairs.begin(); it < pairs.end() - 1; it += 2) {
-		std::pair<itD, itD> new_pair;
+void PmergeMe::sortPair(it_pairV& pairs) {
+    if (pairs.size() <= 1) {
+		if (*pairs.begin()->first < *pairs.begin()->second) {
+			std::swap(pairs.begin()->first, pairs.begin()->second);
+		}
+        return;
+	}
+	
+	it_pairV new_pairs;
+	for (it_pair_itV it = pairs.begin(); it < pairs.end() - 1; it += 2) {
+		std::pair<itV, itV> new_pair;
 		new_pair.first = *it->first > *(it+1)->first ? it->first : (it+1)->first;
 		new_pair.second = *it->first <= *(it+1)->first ? it->first : (it+1)->first;
 		new_pairs.push_back(new_pair);
 	}
-
 	sortPair(new_pairs);
-	
-	// make main chain
-	std::deque<int> main_chain;
-	// std::deque<std::pair<itD, itD> >::iterator it;
-	for (it = new_pairs.begin(); it != new_pairs.end(); it++) {
-		main_chain.push_back(*it->first);
+
+	it_pairV main_chain;
+	for (it_pair_itV it = new_pairs.begin(); it != new_pairs.end(); it++)
+		main_chain.push_back(*findMatchPair(pairs, it->first));
+
+	main_chain.insert(main_chain.begin(), *findMatchPair(pairs, new_pairs[0].second));
+
+	if (pairs.size() == 2 || pairs.size() == 3) {
+		insertElement(main_chain, main_chain.begin(), main_chain.begin() + 2, pairs[2].first, pairs);
+		pairs = main_chain;
+		return ;
 	}
 
-	// put y1 
-	main_chain.push_front(*new_pairs[0].second);
-
-	// put y3, y2
-	for (size_t i = 3; i > 1; i++) {
-		insertElement(main_chain, 0, 0 + 2, *new_pairs[i - 1].second);
+	int i = 3;
+	while (true) {
+		size_t j = getJ(i) > pairs.size() ? pairs.size() : getJ(i);
+		for (; j > getJ(i - 1); j--)
+			insertElement(main_chain, main_chain.begin(), main_chain.begin() + 3/* partner */, new_pairs[j - 1].second, pairs);
+		if (pairs.size() < getJ(i))
+			break;
+		i++;
 	}
+	insertElement(main_chain, main_chain.begin(), main_chain.end(), (pairs.end()-1)->first, pairs);
 
+	pairs = main_chain;
 }
+

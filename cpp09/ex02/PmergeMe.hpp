@@ -7,7 +7,10 @@
 #include <string>
 #include <algorithm>
 
-typedef std::deque<int>::iterator itD;
+typedef std::vector<int>::iterator					itV;
+typedef std::pair<itV, itV>							itP;
+typedef std::vector<std::pair<itV, itV> >			it_pairV;
+typedef std::vector<std::pair<itV, itV> >::iterator	it_pair_itV;
 class PmergeMe {
 public:
 	PmergeMe(const std::string&);
@@ -22,8 +25,13 @@ private:
 private:
 	void fillContainer(const std::string&);
 	void printBefore();
-	void msDeque(std::deque<int>&);
-	void sortPair(std::deque<std::pair<itD, itD> >&);
-	// void insertElement(itD startIndex, itD endIndex, int element);
-	void insertElement(std::deque<int>& arr, int startIndex, int endIndex, int element);
+	void msVector(std::vector<int>&);
+	void sortPair(it_pairV&);
+	void insertElement(it_pairV& arr, it_pair_itV startIt, it_pair_itV endIt, itV& element, it_pairV& pairs);
+	it_pair_itV findMatchPair(it_pairV& pairs, itV targetPair);
+
 };
+
+bool CustomCompare(const std::pair<itV, itV>& lhs, const itV& rhs) {
+    return *(lhs.first) < *rhs;
+}
