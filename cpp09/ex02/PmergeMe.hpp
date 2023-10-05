@@ -31,7 +31,3 @@ private:
 	it_pair_itV findMatchPair(it_pairV& pairs, itV targetPair);
 
 };
-
-bool CustomCompare(const std::pair<itV, itV>& lhs, const itV& rhs) {
-    return *(lhs.first) < *rhs;
-}

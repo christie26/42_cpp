@@ -7,6 +7,10 @@
 #include <cmath>
 #include <algorithm>
 
+bool CustomCompare(const std::pair<itV, itV>& lhs, const itV& rhs) {
+    return *(lhs.first) < *rhs;
+}
+
 PmergeMe::PmergeMe(const std::string& str) : _size(0) {
 	try {
 		fillContainer(str);
@@ -60,9 +64,7 @@ void PmergeMe::msVector(std::vector<int>& _vector) {
 		new_pair.second = *it <= *(it+1) ? it : (it+1);
 		pairs.push_back(new_pair);
 	}
-	
 	sortPair(pairs);
-	
 	printBefore();
 }
 
@@ -71,7 +73,6 @@ void PmergeMe::insertElement(it_pairV& main_chain, it_pair_itV startIt, it_pair_
 		endIt = main_chain.end() - 1;
 
 	it_pair_itV insertPos = std::lower_bound(startIt, endIt, element, CustomCompare);
-
 	main_chain.insert(insertPos, *findMatchPair(pairs, element));
 }
 
@@ -123,15 +124,20 @@ void PmergeMe::sortPair(it_pairV& pairs) {
 
 	int i = 3;
 	while (true) {
-		size_t j = getJ(i) > pairs.size() ? pairs.size() : getJ(i);
-		for (; j > getJ(i - 1); j--)
-			insertElement(main_chain, main_chain.begin(), main_chain.begin() + 3/* partner */, new_pairs[j - 1].second, pairs);
-		if (pairs.size() < getJ(i))
+		size_t j = getJ(i);
+		if (j <= new_pairs.size()) {
+			for (; j > getJ(i - 1); j--) {
+				it_pair_itV pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), new_pairs[j - 1].first, CustomCompare);
+				insertElement(main_chain, main_chain.begin(), pairPos, new_pairs[j - 1].second, pairs);
+			}
+		}
+		else
 			break;
+		// if (pairs.size() < getJ(i))
+			// break;
 		i++;
 	}
 	insertElement(main_chain, main_chain.begin(), main_chain.end(), (pairs.end()-1)->first, pairs);
 
 	pairs = main_chain;
 }
-
