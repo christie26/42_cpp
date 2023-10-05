@@ -114,7 +114,7 @@ void PmergeMe::fillMainChain(it_pairV& new_pairs, it_pairV& pairs) {
 	
 	int i = 2;
 	while (true) {
-        size_t j = getJ(i) > pairs.size() ? pairs.size() : getJ(i);
+        size_t j = getJ(i) > new_pairs.size() ? new_pairs.size() : getJ(i);
 		for (; j > getJ(i - 1); j--) {
 			it_pair_itV pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), new_pairs[j - 1].first, CustomCompare);
 			insertElement(main_chain, main_chain.begin(), pairPos, new_pairs[j - 1].second, pairs);
