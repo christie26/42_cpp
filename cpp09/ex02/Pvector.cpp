@@ -1,13 +1,14 @@
 
 #include "PmergeMe.hpp"
 #include <iostream>
+#include <sys/time.h>
 
-void PmergeMe::msVector(std::vector<int>& _vector) {
+double PmergeMe::msVector(std::vector<int>& _vector) {
 	
-	std::cout << "Before:";
-	printVector();
-	std::vector<std::pair<itV, itV> > pairs;
+	timeval start;
+	gettimeofday(&start, 0);
 
+	std::vector<std::pair<itV, itV> > pairs;
 	for (itV it = _vector.begin(); it < _vector.end() - 1; it += 2) {
 		std::pair<itV, itV> new_pair;
 		new_pair.first = *it > *(it+1) ? it : (it+1);
@@ -16,8 +17,12 @@ void PmergeMe::msVector(std::vector<int>& _vector) {
 	}
 	sortVectorPair(pairs);
 	lastChain(pairs, _vector);
+	timeval end;
+	gettimeofday(&end, 0);
 	std::cout << "After :";
 	printVector();
+	float diff_time = static_cast<float>(end.tv_sec * 1000000 + end.tv_usec - start.tv_usec - start.tv_sec * 1000000);
+	return diff_time;
 }
 
 void PmergeMe::sortVectorPair(it_pairV& pairs) {

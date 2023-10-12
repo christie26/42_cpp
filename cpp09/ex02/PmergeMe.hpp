@@ -29,7 +29,7 @@ private: /* common */
 	void 	printList();
 	
 private: /* Pvector.cpp */
-	void	msVector(std::vector<int>&);
+	double	msVector(std::vector<int>&);
 	void	sortVectorPair(it_pairV&);
 	void	insertElement(it_pairV& arr, it_pair_itV startIt, it_pair_itV endIt, itV& element, it_pairV& pairs);
 	void	insertElementInt(std::vector<int>& main_chain, itV startIt, itV endIt, int element);
@@ -50,5 +50,6 @@ private:
 private: /* utils */
 	size_t		getJacop(int n);
 	static bool	CustomCompare(const std::pair<itV, itV>& lhs, const itV& rhs);
+	void 		printTime(std::string containerType, double time, int size);
 
 };
