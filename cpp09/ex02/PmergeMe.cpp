@@ -5,27 +5,53 @@
 #include <iostream>
 #include <utility>
 #include <cmath>
-#include <algorithm>
+#include <ctime>
+#include <unistd.h>
+#include <sys/time.h>
 
-PmergeMe::PmergeMe(const std::string& str) /*: _size(0) */ {
+void printTime(std::string containerType, std::clock_t time, int size);
+
+void printTime(std::string containerType, std::clock_t time, int size)
+{
+	double clock_per_ms = static_cast<double>(CLOCKS_PER_SEC) / 1000;
+	double timeInMs = time / clock_per_ms;
+
+	std::cout << "Time to process a range of " << size << " elements with std::"
+		<< containerType << ": " << time << " clock ticks (";
+	std::cout << std::fixed;
+	std::cout.precision( 6 );
+	std::cout << timeInMs << " ms)" << std::endl;
+}
+
+PmergeMe::PmergeMe(const std::string& str) : _size(0)  {
 	try {
 		fillContainer(str);
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 		return ;
 	}
-	std::cout << "Before:";
-	printVector();
-	msVector(_vector);
-	std::cout << "After :";
-	printVector();
+// timeval start;
+// gettimeofday(&start, 0);
+// usleep(3000000);
+// timeval end;
+// gettimeofday(&end, 0);
+// 	double diff_time = static_cast<double>(end.tv_sec * 1000000 + end.tv_usec - start.tv_usec - start.tv_sec * 1000000);
+// 	std::cout << "Time to process a range of " << _size << " elements with std::vector : ";
+// 	std::cout << diff_time << " ms" << std::endl;
 
-	std::cout << "Before:";
-	printList();
-	msList(_list);
-	std::cout << "After :";
-	printList();
+
+	// msVector(_vector);
+	// msList(_list);
+
+	std::clock_t start = clock();
+	usleep(3000000);
+	std::clock_t end = clock();
+	double diff_time = 1000 * static_cast<double>(end - start) / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << _size << " elements with std::list : ";
+	std::cout << diff_time << " ms" << std::endl;
+
 }
+
 PmergeMe::~PmergeMe() {}
 PmergeMe::PmergeMe(const PmergeMe&) {}
 PmergeMe& PmergeMe::operator=(const PmergeMe&) { return *this; }
@@ -41,7 +67,7 @@ void PmergeMe::fillContainer(const std::string& str) {
 		}
 		_vector.push_back(num);
 		_list.push_back(num);
-		// _size++;
+		_size++;
 	}
 }
 void PmergeMe::printVector() {

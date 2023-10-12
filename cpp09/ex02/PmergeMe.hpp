@@ -21,7 +21,7 @@ private:
 private:
 	std::vector<int>	_vector;
 	std::list<int>		_list;
-	// unsigned int		_size;
+	unsigned int		_size;
 
 private: /* common */
 	void 	fillContainer(const std::string&);

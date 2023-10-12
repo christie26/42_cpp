@@ -1,8 +1,11 @@
 
 #include "PmergeMe.hpp"
+#include <iostream>
 
 void PmergeMe::msVector(std::vector<int>& _vector) {
 	
+	std::cout << "Before:";
+	printVector();
 	std::vector<std::pair<itV, itV> > pairs;
 
 	for (itV it = _vector.begin(); it < _vector.end() - 1; it += 2) {
@@ -13,6 +16,8 @@ void PmergeMe::msVector(std::vector<int>& _vector) {
 	}
 	sortVectorPair(pairs);
 	lastChain(pairs, _vector);
+	std::cout << "After :";
+	printVector();
 }
 
 void PmergeMe::sortVectorPair(it_pairV& pairs) {
