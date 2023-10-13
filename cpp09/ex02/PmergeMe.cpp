@@ -25,8 +25,7 @@ PmergeMe::PmergeMe(const std::string& str) : _size(0)  {
 	printVector();
 	// usleep(30000);
 	printTime("vector", msVector(_vector), _size);
-
-	// msList(_list);
+	printTime("list", msList(_list), _size);
 }
 
 PmergeMe::~PmergeMe() {}

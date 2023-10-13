@@ -8,9 +8,14 @@
 #include <algorithm>
 
 typedef std::vector<int>::iterator					itV;
-typedef std::pair<itV, itV>							itP;
-typedef std::vector<std::pair<itV, itV> >			it_pairV;
-typedef std::vector<std::pair<itV, itV> >::iterator	it_pair_itV;
+typedef std::pair<itV, itV>							itV_pair;
+typedef std::vector<std::pair<itV, itV> >			itV_pairV;
+typedef std::vector<std::pair<itV, itV> >::iterator	itV_pairV_it;
+
+typedef std::list<int>::iterator					itL;
+typedef std::pair<itL, itL>							itL_pair;
+typedef std::list<std::pair<itL, itL> >				itL_pairL;
+typedef std::list<std::pair<itL, itL> >::iterator	itL_pairL_it;
 class PmergeMe {
 public:
 	PmergeMe(const std::string&);
@@ -29,23 +34,22 @@ private: /* common */
 	void 	printList();
 	
 private: /* Pvector.cpp */
-	double	msVector(std::vector<int>&);
-	void	sortVectorPair(it_pairV&);
-	void	insertElement(it_pairV& arr, it_pair_itV startIt, it_pair_itV endIt, itV& element, it_pairV& pairs);
-	void	insertElementInt(std::vector<int>& main_chain, itV startIt, itV endIt, int element);
-	itP		findMatchPair(it_pairV& pairs, itV& targetPair);
-	void	fillMainChain(it_pairV& new_pairs, it_pairV& pairs);
-	void	lastChain(it_pairV& pairs, std::vector<int>& _vector);
+	double		msVector(std::vector<int>&);
+	void		sortPairV(itV_pairV&);
+	void		insertElementV(itV_pairV& arr, itV_pairV_it startIt, itV_pairV_it endIt, itV& element, itV_pairV& pairs);
+	void		insertElementIntV(std::vector<int>& main_chain, itV startIt, itV endIt, int element);
+	itV_pair	findMatchPairV(itV_pairV& pairs, itV& targetPair);
+	void		fillMainChainV(itV_pairV& new_pairs, itV_pairV& pairs);
+	void		finalChainV(itV_pairV& pairs, std::vector<int>& _vector);
 
 private:
-	void	msList(std::list<int>&);
-	// void	sortPair(it_pairV&);
-	// void	insertElement(it_pairV& arr, it_pair_itV startIt, it_pair_itV endIt, itV& element, it_pairV& pairs);
-	// void	insertElementInt(std::vector<int>& main_chain, itV startIt, itV endIt, int element);
-	// itP		findMatchPair(it_pairV& pairs, itV& targetPair);
-	// void	fillMainChain(it_pairV& new_pairs, it_pairV& pairs);
-	// void	lastChain(it_pairV& pairs, std::vector<int>& _vector);
-
+	double		msList(std::list<int>&);
+	void		sortPairL(itL_pairL&);
+	void		insertElementL(itL_pairL& arr, itL_pairL_it startIt, itL_pairL_it endIt, itL& element, itL_pairL& pairs);
+	void		insertElementIntL(std::list<int>& main_chain, itL startIt, itL endIt, int element);
+	itL_pair	findMatchPairL(itL_pairL& pairs, itL& targetPair);
+	void		fillMainChainL(itL_pairL& new_pairs, itL_pairL& pairs);
+	void		finalChainL(itL_pairL& pairs, std::list<int>& _list);
 
 private: /* utils */
 	size_t		getJacop(int n);
