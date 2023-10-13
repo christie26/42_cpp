@@ -27,9 +27,8 @@ double PmergeMe::msVector(std::vector<int>& _vector) {
 
 void PmergeMe::sortPairV(itV_pairV& pairs) {
     if (pairs.size() <= 1) {
-		if (*pairs.begin()->first < *pairs.begin()->second) {
+		if (*pairs.begin()->first < *pairs.begin()->second)
 			std::swap(pairs.begin()->first, pairs.begin()->second);
-		}
         return;
 	}
 	itV_pairV new_pairs;
@@ -96,7 +95,7 @@ void PmergeMe::finalChainV(itV_pairV& pairs, std::vector<int>& _vector) {
         size_t j = getJacop(i) > pairs.size() ? pairs.size() : getJacop(i);
         for (; j > getJacop(i - 1); j--) {
             int element = *pairs[j - 1].second;
-            std::vector<int>::iterator pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), element);
+            itV pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), element);
             insertElementIntV(main_chain, main_chain.begin(), pairPos, element);
         }
 		if (getJacop(i) > pairs.size())

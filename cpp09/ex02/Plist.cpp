@@ -17,7 +17,7 @@ double PmergeMe::msList(std::list<int>& _list) {
         
         new_pair.first = (*it1 > *it2) ? it1 : it2;
         new_pair.second = (*it1 <= *it2) ? it1 : it2;
-        
+// std::cout << "(" << *new_pair.first << ", " << *new_pair.second << ")" << std::endl;
         pairs.push_back(new_pair);
         
         std::advance(it, 2);
@@ -26,26 +26,27 @@ double PmergeMe::msList(std::list<int>& _list) {
 	finalChainL(pairs, _list);
 	timeval end;
 	gettimeofday(&end, 0);
+	std::cout << "After :";
+	printList();
 	float diff_time = static_cast<float>(end.tv_sec * 1000000 + end.tv_usec - start.tv_sec * 1000000 - start.tv_usec);
 	return diff_time;
-	return 416;
 }
 
 void PmergeMe::sortPairL(itL_pairL& pairs) {
     if (pairs.size() <= 1) {
-		if (*pairs.begin()->first < *pairs.begin()->second) {
+		if (*pairs.begin()->first < *pairs.begin()->second)
 			std::swap(pairs.begin()->first, pairs.begin()->second);
-		}
         return;
 	}
 	itL_pairL new_pairs;
 	itL_pairL_it it = pairs.begin();
-	while (std::next(it) != pairs.end()) {
+	while (std::distance(it, pairs.end()) >= 2) {
 		itL_pair new_pair;
 		itL_pairL_it next_it = std::next(it);
 
 		new_pair.first = (*it->first > *next_it->first) ? it->first : next_it->first;
 		new_pair.second = (*it->first <= *next_it->first) ? it->first : next_it->first;
+// std::cout << "(" << *new_pair.first << ", " << *new_pair.second << ")" << std::endl;
 
 		new_pairs.push_back(new_pair);
 
@@ -54,6 +55,7 @@ void PmergeMe::sortPairL(itL_pairL& pairs) {
 	sortPairL(new_pairs);
 	fillMainChainL(new_pairs, pairs);
 }
+
 void PmergeMe::insertElementL(itL_pairL& main_chain, itL_pairL_it startIt, itL_pairL_it endIt, itL& element, itL_pairL& pairs) {
 	itL_pairL_it insertPos = std::lower_bound(startIt, endIt, element, CustomCompareL);
 	main_chain.insert(insertPos, findMatchPairL(pairs, element));
@@ -73,8 +75,6 @@ void PmergeMe::fillMainChainL(itL_pairL& new_pairs, itL_pairL& pairs) {
 	itL_pairL main_chain;
 	for (itL_pairL_it it = new_pairs.begin(); it != new_pairs.end(); it++)
 		main_chain.push_back(findMatchPairL(pairs, it->first));
-	// itL_pairL_it it = new_pairs.begin();
-	// std::advance(it, index);
 	main_chain.insert(main_chain.begin(), findMatchPairL(pairs, new_pairs.begin()->second));
 	
 	int i = 2;
@@ -90,8 +90,6 @@ void PmergeMe::fillMainChainL(itL_pairL& new_pairs, itL_pairL& pairs) {
 			break;
 		i++;
 	}
-	// if (new_pairs.size() * 2 != pairs.size())
-	// 	insertElementL(main_chain, main_chain.begin(), main_chain.end(), (pairs.end() - 1)->first, pairs);
 	if (new_pairs.size() * 2 != pairs.size()) {
 		std::list<int>::iterator lastElementIt = std::prev(pairs.end())->first;
 		insertElementL(main_chain, main_chain.begin(), main_chain.end(), lastElementIt, pairs);
@@ -110,14 +108,14 @@ void PmergeMe::finalChainL(itL_pairL& pairs, std::list<int>& _list) {
     int i = 2;
     while (true) {
         size_t j = getJacop(i) > pairs.size() ? pairs.size() : getJacop(i);
-
-        // for (; j > getJacop(i - 1); j--) {
-		// for (auto it = pairs.begin(); std::distance(it, pairs.end()) >= getJacop(i - 1) && j > getJacop(i - 1); --j) {
-        for (itL_pairL_it it = pairs.begin(); j > getJacop(i - 1); --j) {
-            --it;
+		itL_pairL_it it = pairs.begin();
+        std::advance(it, j);
+        for (; j > getJacop(i - 1); --j) {
+			std::advance(it, -1);
+// std::cout << "it: (" << *it->first << ", " << *it->second <<")" << std::endl;
             int element = *(it->second);
             itL pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), element);
-            main_chain.insert(pairPos, element);
+            insertElementIntL(main_chain, main_chain.begin(), pairPos, element);
         }
 
         if (getJacop(i) > pairs.size()) {
@@ -127,35 +125,12 @@ void PmergeMe::finalChainL(itL_pairL& pairs, std::list<int>& _list) {
     }
 
     if (pairs.size() * 2 != _list.size()) {
-        main_chain.push_back(*std::prev(_list.end()));
+        insertElementIntL(main_chain, main_chain.begin(), main_chain.end(), *std::prev(_list.end()));
     }
 
     _list = main_chain;
 }
 
-// void PmergeMe::finalChainL(itL_pairL& pairs, std::list<int>& _list) {
-// 	std::list<int> main_chain;
-//     for (size_t i = 0; i < pairs.size(); i++)
-//         main_chain.push_back(*(pairs[i].first));
-//     main_chain.insert(main_chain.begin(), *pairs[0].second);
-
-//     int i = 2;
-//     while (true) {
-//         size_t j = getJacop(i) > pairs.size() ? pairs.size() : getJacop(i);
-//         for (; j > getJacop(i - 1); j--) {
-//             int element = *pairs[j - 1].second;
-//             std::list<int>::iterator pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), element);
-//             insertElementIntL(main_chain, main_chain.begin(), pairPos, element);
-//         }
-// 		if (getJacop(i) > pairs.size())
-// 			break;
-//         i++;
-//     }
-    
-//     if (pairs.size() * 2 != _list.size())
-//         insertElementIntL(main_chain, main_chain.begin(), main_chain.end(), *(_list.end() - 1));
-// 	_list = main_chain;
-// }
 bool PmergeMe::CustomCompareL(const std::pair<itL, itL>& lhs, const itL& rhs) {
     return *(lhs.first) < *rhs;
 }
