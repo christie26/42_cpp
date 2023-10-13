@@ -41,8 +41,9 @@ private: /* Pvector.cpp */
 	itV_pair	findMatchPairV(itV_pairV& pairs, itV& targetPair);
 	void		fillMainChainV(itV_pairV& new_pairs, itV_pairV& pairs);
 	void		finalChainV(itV_pairV& pairs, std::vector<int>& _vector);
+	static bool	CustomCompareV(const std::pair<itV, itV>& lhs, const itV& rhs);
 
-private:
+private: /* Plist.cpp */
 	double		msList(std::list<int>&);
 	void		sortPairL(itL_pairL&);
 	void		insertElementL(itL_pairL& arr, itL_pairL_it startIt, itL_pairL_it endIt, itL& element, itL_pairL& pairs);
@@ -50,10 +51,10 @@ private:
 	itL_pair	findMatchPairL(itL_pairL& pairs, itL& targetPair);
 	void		fillMainChainL(itL_pairL& new_pairs, itL_pairL& pairs);
 	void		finalChainL(itL_pairL& pairs, std::list<int>& _list);
+	static bool	CustomCompareL(const std::pair<itL, itL>& lhs, const itL& rhs);
 
 private: /* utils */
 	size_t		getJacop(int n);
-	static bool	CustomCompare(const std::pair<itV, itV>& lhs, const itV& rhs);
 	void 		printTime(std::string containerType, double time, int size);
 
 };

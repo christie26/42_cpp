@@ -8,9 +8,9 @@ double PmergeMe::msVector(std::vector<int>& _vector) {
 	timeval start;
 	gettimeofday(&start, 0);
 
-	std::vector<std::pair<itV, itV> > pairs;
+	itV_pairV pairs;
 	for (itV it = _vector.begin(); it < _vector.end() - 1; it += 2) {
-		std::pair<itV, itV> new_pair;
+		itV_pair new_pair;
 		new_pair.first = *it > *(it+1) ? it : (it+1);
 		new_pair.second = *it <= *(it+1) ? it : (it+1);
 		pairs.push_back(new_pair);
@@ -44,7 +44,7 @@ void PmergeMe::sortPairV(itV_pairV& pairs) {
 }
 
 void PmergeMe::insertElementV(itV_pairV& main_chain, itV_pairV_it startIt, itV_pairV_it endIt, itV& element, itV_pairV& pairs) {
-	itV_pairV_it insertPos = std::lower_bound(startIt, endIt, element, CustomCompare);
+	itV_pairV_it insertPos = std::lower_bound(startIt, endIt, element, CustomCompareV);
 	main_chain.insert(insertPos, findMatchPairV(pairs, element));
 }
 
@@ -72,7 +72,7 @@ void PmergeMe::fillMainChainV(itV_pairV& new_pairs, itV_pairV& pairs) {
 	while (true) {
         size_t j = getJacop(i) > new_pairs.size() ? new_pairs.size() : getJacop(i);
 		for (; j > getJacop(i - 1); j--) {
-			itV_pairV_it pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), new_pairs[j - 1].first, CustomCompare);
+			itV_pairV_it pairPos = std::lower_bound(main_chain.begin(), main_chain.end(), new_pairs[j - 1].first, CustomCompareV);
 			insertElementV(main_chain, main_chain.begin(), pairPos, new_pairs[j - 1].second, pairs);
 		}
 		if (getJacop(i) > new_pairs.size())
@@ -109,6 +109,6 @@ void PmergeMe::finalChainV(itV_pairV& pairs, std::vector<int>& _vector) {
 	_vector = main_chain;
 }
 
-bool PmergeMe::CustomCompare(const std::pair<itV, itV>& lhs, const itV& rhs) {
+bool PmergeMe::CustomCompareV(const std::pair<itV, itV>& lhs, const itV& rhs) {
     return *(lhs.first) < *rhs;
 }
