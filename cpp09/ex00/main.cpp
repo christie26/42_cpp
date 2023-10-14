@@ -11,8 +11,6 @@ int main(int ac, char** av) {
 
 	try {
 		BitcoinExchange bit(av[1]);
-		// Parser parser;
-		// Exchanger exchange(parser.getDatas(), av[1]);
 	} catch (std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}

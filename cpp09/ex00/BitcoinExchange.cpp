@@ -46,26 +46,16 @@ void BitcoinExchange::parseLine() {
 }
 void BitcoinExchange::parseData(const std::string& line) {
     size_t pos = line.find(',');
-    Date new_date(line.substr(0, pos));
+    std::string new_date = line.substr(0, pos);
+    validDateCheck(new_date);
 
     float ratio = stringToFloat(line.substr(pos + 1, line.length()));
 
     _datas.insert(std::make_pair(new_date, ratio));
 
 }
-float BitcoinExchange::stringToFloat(const std::string& str) {
-    std::istringstream iss(str);
-    float result;
-    iss >> std::noskipws >> result;
 
-    if (iss.eof() && !iss.fail()) {
-        return result;
-    } else {
-        throw std::invalid_argument("data.csv: invalid float format.");
-    }
-}
-
-void BitcoinExchange::processCenter(std::map<Date,float>) {
+void BitcoinExchange::processCenter(std::map<std::string,float>) {
 	if (!fs_input.is_open()) {
         throw std::invalid_argument("av[1]: could not open file.");
 	}
@@ -86,7 +76,32 @@ void BitcoinExchange::processCenter(std::map<Date,float>) {
     }
 }
 
-float BitcoinExchange::findClosestDate(const Date& target) const{
+void BitcoinExchange::processEachLine(std::string& line) {
+	size_t pos = line.find(' ');
+    if (pos == std::string::npos || line.length() - pos < 3) {
+        std::cout << "Error: bad input => " << line << std::endl;
+        return;
+    }
+
+    std::string date_str = line.substr(0, pos);
+    std::string format_str = line.substr(pos, 3);
+    std::string value_str = line.substr(pos + 3);
+    if (format_str != " | ") {
+        std::cout << "Error: bad input => " << line << std::endl;
+        return ;
+    }
+    
+    try {
+        validDateCheck(date_str);
+        float value = stringToValue(value_str);
+        std::cout << date_str << " => " << value_str;
+        std::cout << " = " << (value * findClosestDate(date_str)) << std::endl;
+
+    } catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+}
+float BitcoinExchange::findClosestDate(const std::string& target) const{
 
 	itm it;
     itm prev;
@@ -99,7 +114,47 @@ float BitcoinExchange::findClosestDate(const Date& target) const{
 	return prev->second;
 }
 
-float BitcoinExchange::stringToValue(std::string& str) const {
+void BitcoinExchange::validDateCheck(const std::string& date_str) {
+    std::stringstream ss(date_str);
+    int year, month, day;
+    char dash1, dash2;
+
+    if (!(ss >> year >> dash1 >> month >> dash2 >> day) || 
+        dash1 != '-' || dash2 != '-' || 
+        year < 1900 || month < 1 || month > 12 || day < 1 || day > 31) {
+        throw std::invalid_argument("Invalid date format");
+    }
+    if (month)
+    if (!ss.eof() || ss.fail()) {
+        throw std::invalid_argument("invalid date format");
+    }
+    if (month == 2) {
+        if (isLeapYear(year) && day > 29)
+            throw std::invalid_argument("invalid date format");
+        else if (!isLeapYear(year) && day > 28)
+            throw std::invalid_argument("invalid date format");
+    }
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+        throw std::invalid_argument("invalid date format");
+}
+
+bool BitcoinExchange::isLeapYear(int year) {
+    if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+        return true;
+    return false;
+}
+float BitcoinExchange::stringToFloat(const std::string& str) {
+    std::istringstream iss(str);
+    float result;
+    iss >> std::noskipws >> result;
+
+    if (iss.eof() && !iss.fail()) {
+        return result;
+    } else {
+        throw std::invalid_argument("data.csv: invalid float format.");
+    }
+}
+float BitcoinExchange::stringToValue(const std::string& str) const {
 
 	std::istringstream iss(str);
     float value;
@@ -114,31 +169,4 @@ float BitcoinExchange::stringToValue(std::string& str) const {
     } else {
 		return value;
 	}
-}
-
-void BitcoinExchange::processEachLine(std::string& line) {
-	size_t pos = line.find(' ');
-
-    if (pos == std::string::npos) {
-        std::cerr << "Error: bad input => " << line << std::endl;
-        return;
-    }
-
-    std::string date_str = line.substr(0, pos);
-    std::string format_str = line.substr(pos, 3);
-    std::string value_str = line.substr(pos + 3);
-    if (format_str != " | ") {
-        std::cerr << "Error: bad input => " << line << std::endl;
-        return ;
-    }
-    
-    try {
-        Date date(date_str);
-        float value = stringToValue(value_str);
-        std::cout << date_str << " => " << value_str;
-        std::cout << " = " << (value * findClosestDate(date)) << std::endl;
-
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
 }
