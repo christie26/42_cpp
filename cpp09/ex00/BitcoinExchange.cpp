@@ -1,11 +1,27 @@
 
-#include "Exchanger.hpp"
+#include "BitcoinExchange.hpp"
 #include <iostream>
-#include <algorithm>
 #include <sstream>
+#include <algorithm>
 
-Exchanger::Exchanger(std::map<Date,float> datas, const std::string& file_name) : _datas(datas) {
+BitcoinExchange::BitcoinExchange(const std::string& file_name) 
+: _fs("/Users/yoonsele/project/cpp/cpp09/ex00/data.csv") {
+	if (!_fs.is_open()) {
+		throw std::out_of_range("data.csv: could not open file.");
+	}
+	parseCenter();
+	processCenter(_datas, file_name);
+}
+BitcoinExchange::~BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange (const BitcoinExchange&) {}
+BitcoinExchange& BitcoinExchange::operator= (const BitcoinExchange& copy) {
+	if (this != &copy) {
+		this->_datas = copy._datas;
+	}
+	return *this;
+}
 
+void BitcoinExchange::processCenter(std::map<Date,float>, const std::string& file_name) {
 	std::ifstream fs(file_name);
 	if (!fs.is_open()) {
         throw std::invalid_argument("av[1]: could not open file.");
@@ -26,16 +42,8 @@ Exchanger::Exchanger(std::map<Date,float> datas, const std::string& file_name) :
         processEachLine(line);
     }
 }
-Exchanger::~Exchanger() {}
-Exchanger::Exchanger (const Exchanger& copy) : _datas(copy._datas) {}
-Exchanger& Exchanger::operator= (const Exchanger& copy) {
-	if (this != &copy) {
-		this->_datas = copy._datas;
-	}
-	return *this;
-}
 
-float Exchanger::findClosestDate(const Date& target) const{
+float BitcoinExchange::findClosestDate(const Date& target) const{
 
 	itm it;
     itm prev;
@@ -48,7 +56,7 @@ float Exchanger::findClosestDate(const Date& target) const{
 	return prev->second;
 }
 
-float Exchanger::stringToValue(std::string& str) const {
+float BitcoinExchange::stringToValue(std::string& str) const {
 
 	std::istringstream iss(str);
     float value;
@@ -65,7 +73,7 @@ float Exchanger::stringToValue(std::string& str) const {
 	}
 }
 
-void Exchanger::processEachLine(std::string& line) {
+void BitcoinExchange::processEachLine(std::string& line) {
 	size_t pos = line.find(' ');
 
     if (pos == std::string::npos) {

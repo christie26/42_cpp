@@ -1,6 +1,7 @@
+
+#include "BitcoinExchange.hpp"
 #include <iostream>
 #include <ctime>
-#include "Date.hpp"
 
 Date::Date(const std::string& date_str) : date_str(date_str) {
 	if (!isValidDate()) {

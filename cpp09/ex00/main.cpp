@@ -1,8 +1,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "Parser.hpp"
-#include "Exchanger.hpp"
+#include "BitcoinExchange.hpp"
 
 int main(int ac, char** av) {
 	if (ac != 2) {
@@ -11,8 +10,9 @@ int main(int ac, char** av) {
 	}
 
 	try {
-		Parser parser;
-		Exchanger exchange(parser.getDatas(), av[1]);
+		BitcoinExchange bit(av[1]);
+		// Parser parser;
+		// Exchanger exchange(parser.getDatas(), av[1]);
 	} catch (std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
