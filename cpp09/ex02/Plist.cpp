@@ -26,8 +26,8 @@ double PmergeMe::msList(std::list<int>& _list) {
 	finalChainL(pairs, _list);
 	timeval end;
 	gettimeofday(&end, 0);
-	std::cout << "After :";
-	printList();
+	// std::cout << "After :";
+	// printList();
 	float diff_time = static_cast<float>(end.tv_sec * 1000000 + end.tv_usec - start.tv_sec * 1000000 - start.tv_usec);
 	return diff_time;
 }
