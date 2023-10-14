@@ -18,10 +18,11 @@ private:
 	BitcoinExchange& operator= (const BitcoinExchange&);
 
 private: /* member variable */
-	std::ifstream			_fs;
+	std::ifstream			fs_data;
+	std::ifstream			fs_input;
 	std::map<Date, float>	_datas;
 
-private: /* parsing.cpp */
+private: /* parsing */
 	void	parseCenter();
 	void 	parseFirstLine();
 	void 	parseLine();
@@ -29,7 +30,7 @@ private: /* parsing.cpp */
 	float	stringToFloat(const std::string& str);
 
 private: /* processing */
-	void	processCenter(std::map<Date,float>, const std::string& file_name);
+	void	processCenter(std::map<Date,float>);
 	float	findClosestDate(const Date& target) const;
 	float	stringToValue(std::string& str) const;
 	void	processEachLine(std::string& line);

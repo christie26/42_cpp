@@ -5,7 +5,7 @@
 
 int main(int ac, char** av) {
 	if (ac != 2) {
-		std::cerr << "Error: put one argument." << std::endl;
+		std::cerr << "usage: ./btc <input>" << std::endl;
 		return 0;
 	}
 
