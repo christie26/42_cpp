@@ -20,7 +20,7 @@ RPN& RPN::operator=(const RPN& copy) {
 
 bool RPN::isNumber(char c) {
 
-	if ('1' <= c && c <= '9')
+	if ('0' <= c && c <= '9')
 		processNumber(c - '0');
 	else
 		return false;
@@ -59,6 +59,8 @@ void RPN::processOperator(int operation) {
 	int first = _stack.top();
 	_stack.pop();
 	int result;
+	if (operation == div && second == 0)
+		throw std::invalid_argument("Error: cannot divide by 0.");
 	switch(operation) {
 		case plus:
 			result = first + second;

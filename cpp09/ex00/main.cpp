@@ -5,14 +5,14 @@
 
 int main(int ac, char** av) {
 	if (ac != 2) {
-		std::cerr << "usage: ./btc <input>" << std::endl;
+		std::cout << "usage: ./btc <input>" << std::endl;
 		return 0;
 	}
 
 	try {
 		BitcoinExchange bit(av[1]);
 	} catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 
 }

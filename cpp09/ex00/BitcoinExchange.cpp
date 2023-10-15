@@ -5,7 +5,7 @@
 #include <algorithm>
 
 BitcoinExchange::BitcoinExchange(const std::string& file_name) 
-: fs_data("/Users/yoonsele/project/cpp/cpp09/ex00/data.csv"), fs_input(file_name) {
+: fs_data("data.csv"), fs_input(file_name) {
     parseCenter();
 	processCenter(_datas);
 }
@@ -43,6 +43,8 @@ void BitcoinExchange::parseLine() {
         }
         parseData(line);
     }
+    if (_datas.size() == 0)
+    	throw std::out_of_range("data.cvs: empty.");
 }
 void BitcoinExchange::parseData(const std::string& line) {
     size_t pos = line.find(',');
@@ -90,12 +92,13 @@ void BitcoinExchange::processEachLine(std::string& line) {
         std::cout << "Error: bad input => " << line << std::endl;
         return ;
     }
-    
+
     try {
         validDateCheck(date_str);
         float value = stringToValue(value_str);
+        float changedValue = value * findClosestDate(date_str);
         std::cout << date_str << " => " << value_str;
-        std::cout << " = " << (value * findClosestDate(date_str)) << std::endl;
+        std::cout << " = " << changedValue << std::endl;
 
     } catch (const std::exception& e) {
         std::cout << "Error: " << e.what() << std::endl;
@@ -111,6 +114,8 @@ float BitcoinExchange::findClosestDate(const std::string& target) const{
             break;
         prev = it;
 	}
+    if (it == _datas.begin())
+        throw std::invalid_argument("Earilest data is before input date.");
 	return prev->second;
 }
 
@@ -124,7 +129,6 @@ void BitcoinExchange::validDateCheck(const std::string& date_str) {
         year < 1900 || month < 1 || month > 12 || day < 1 || day > 31) {
         throw std::invalid_argument("Invalid date format");
     }
-    if (month)
     if (!ss.eof() || ss.fail()) {
         throw std::invalid_argument("invalid date format");
     }
@@ -148,10 +152,10 @@ float BitcoinExchange::stringToFloat(const std::string& str) {
     float result;
     iss >> std::noskipws >> result;
 
-    if (iss.eof() && !iss.fail()) {
-        return result;
+    if (!iss.eof() || iss.fail()) {
+        throw std::invalid_argument("invalid float format");
     } else {
-        throw std::invalid_argument("data.csv: invalid float format.");
+        return result;
     }
 }
 float BitcoinExchange::stringToValue(const std::string& str) const {
