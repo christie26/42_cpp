@@ -4,7 +4,7 @@ SRCS		= main.cpp PmergeMe.cpp Pvector.cpp Plist.cpp
 
 OBJS		:= $(SRCS:%.cpp=%.o)
 
-CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror
 
 all:		${NAME}
 
